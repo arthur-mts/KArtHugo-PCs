@@ -9,7 +9,7 @@
 </h:head>
 
 <h:body>
-	<h:form>
+	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:tabMenu>
 			<p:menuitem icon="ui-icon-disk" value="PCs Montados"
@@ -17,14 +17,13 @@
 			<p:menuitem icon="ui-icon-disk" value="Monte seu PC"
 				url="createPc.xhtml" />
 		</p:tabMenu>
-
-		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">
+		<p:panelGrid style="margin-botton:20px" columns="2"  layout="grid">
 			<p:outputLabel value="Nome do PC:" />
 			<p:inputText id="nomePc" label="nome"
 				value="#{computadorService.pc.nome}" style="width:350px" />
 
 			<p:outputLabel value="Placa mãe:" />
-			<p:selectOneMenu id="placaMae" converter="ConversorPeca" 
+			<p:selectOneMenu id="placaMae" converter="ConversorPeca"
 				style="width:350px" value="#{computadorService.pc.placaMae}">
 				<f:selectItems value="#{computadorService.pecas}" var="placaMae"
 					itemLabel="#{placaMae.nome}" itemValue="#{placaMae}" />
@@ -47,6 +46,7 @@
 				<f:selectItems value="#{computadorService.pecas}" var="fonte"
 					itemLabel="#{fonte.nome}" itemValue="#{fonte}" />
 			</p:selectOneMenu>
+
 		</p:panelGrid>
 		<p:panelGrid style="margin-botton:20px" columns="4" layout="grid">
 
@@ -58,8 +58,8 @@
 					itemLabel="#{ram.nome}" itemValue="#{ram}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
-			<p:spinner id="qntRam" style="width:300px"
-				value="#{computadorService.pc.ram.quant}" />
+			<p:spinner id="spinQntRam" style="width:300px"
+				value="#{computadorService.qntRam}" />
 
 			<p:outputLabel value="Memoria Fisica (HD):" />
 			<p:selectOneMenu id="hd" var="h" converter="ConversorPeca"
@@ -69,8 +69,8 @@
 					itemLabel="#{hd.nome}" itemValue="#{hd}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
-			<p:spinner id="qntHd" style="width:300px"
-				value="#{computadorService.pc.hd.quant}" />
+			<p:spinner id="spinQntHd" style="width:300px"
+				value="#{computadorService.qntHd}" />
 
 			<p:outputLabel value="Placa de Video:" />
 			<p:selectOneMenu id="video" var="v" converter="ConversorPeca"
@@ -80,12 +80,14 @@
 					itemLabel="#{video.nome}" itemValue="#{video}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
-			<p:spinner id="qntVideo" style="width:300px"
-				value="#{computadorService.pc.video.quant}" />
+			<p:spinner id="spinQntVideo" style="width:300px"
+				value="#{computadorService.qntVideo}" />
 
 		</p:panelGrid>
+		
 		<p:commandButton value="Salvar Computador" update="growl"
-			action="#{computadorService.salvarPc()}" />
+			action="#{computadorService.salvarPc()}">
+		</p:commandButton>
 
 	</h:form>
 </h:body>

@@ -3,12 +3,13 @@ package beans;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.context.PrimeFacesContext;
 
 import entities.MontagemDeComputador;
 import entities.Peca;
@@ -23,10 +24,16 @@ public class ComputadorBean {
 	private MontagemDeComputador pc = new MontagemDeComputador();
 	private int idPc;
 	private static int cont = 0;
-	private int qntRam;
 	private boolean renderPanelGridPcBuscado;
+	private int qntRam;
 	private int qntVideo;
 	private int qntHd;
+	/*private Peca placa;
+	private Peca cpu;
+	private Peca fonte;
+	private Peca ram;
+	private Peca hd;
+	private Peca video;*/
 	private List<Peca> pecas = new ArrayList<Peca>();
 
 	public List<MontagemDeComputador> getPcs() {
@@ -103,12 +110,12 @@ public class ComputadorBean {
 
 	@PostConstruct
 	public void init() {
-		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80, 1));
-		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50, 1));
-		pecas.add(new Peca("Intel Core I5", "cpu", 300, 1));
-		pecas.add(new Peca("Nividia GEForce 1080", "video", 500, 1));
-		pecas.add(new Peca("FOnte 500w", "fonte", 200, 1));
-		pecas.add(new Peca("Hd 1 terabyte", "hd", 100, 1));
+		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80, 0));
+		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50, 0));
+		pecas.add(new Peca("Intel Core I5", "cpu", 300, 0));
+		pecas.add(new Peca("Nividia GEForce 1080", "video", 500, 0));
+		pecas.add(new Peca("FOnte 500w", "fonte", 200, 0));
+		pecas.add(new Peca("Hd 1 terabyte", "hd", 100, 0));
 		setRenderPanelGridPcBuscado(false);
 	}
 
@@ -137,18 +144,26 @@ public class ComputadorBean {
 		
 	}
 
-	public void salvarPc() throws IOException {
+	public void salvarPc() {
+		pc.getRam().setQuant(getQntRam());
+		pc.getHd().setQuant(getQntHd());
+		pc.getVideo().setQuant(getQntVideo());
 		double precoTotal = (pc.getRam().getPreco() * pc.getRam().getQuant())
 				+ (pc.getHd().getPreco() * pc.getHd().getQuant())
 				+ (pc.getVideo().getPreco() * pc.getVideo().getQuant()) + (pc.getCpu().getPreco())
 				+ (pc.getFonte().getPreco()) + (pc.getPlacaMae().getPreco());
 		pc.setPrecoTotal(precoTotal);
-		FacesContext.getCurrentInstance().getExternalContext().redirect("pcsMontados.xhtml");
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("PC " + pc.getNome() + "Criado", "O preco total foi de " + pc.getPrecoTotal()));
 		pcs.add(pc);
 		pc = new MontagemDeComputador();
+		setQntHd(0);
+		setQntRam(0);
+		setQntVideo(0);
+		
 	}
+	
+	
 
 	public int getIdPc() {
 		return idPc;

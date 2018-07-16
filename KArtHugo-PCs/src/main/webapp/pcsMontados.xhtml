@@ -60,13 +60,13 @@
 
 				<h:outputText value="Preço total: " />
 				<h:outputText value="R$#{pc.precoTotal}" />
+				
+				<h:outputText value="ID: "/>
+				<h:outputText value="#{pc.getId}"/>
 
 			</p:panelGrid>
 		</p:carousel>
 
-		<f:facet name="header">
-			<h:outputText value="Busque seu PC" />
-		</f:facet>
 		<p:panelGrid columns="2" id="buscaPc">
 			<h:outputText value="Digite o id do seu PC:" />
 			<p:inputText value="#{computadorService.idPc}" id="idPcBuscado" />
@@ -75,7 +75,8 @@
 			action="#{computadorService.buscarPC()}" />
 
 		<p:panelGrid columns="3" style="width:100%;margin:10px 0px"
-			layout="grid" columnClasses="label,value,value" rendered="#{renderPanelGridPcBuscado}">
+			layout="grid" columnClasses="label,value,value"
+			rendered="#{renderPanelGridPcBuscado}">
 
 			<f:facet name="header">
 				<p:outputLabel style="font-weight: bold;"
@@ -115,7 +116,8 @@
 			<h:outputText value="Preço total: " />
 			<h:outputText value="R$#{computadorService.pcBuscado.precoTotal}" />
 			
-			<p:commandButton value="Editar PC" id="editarPcBuscado" action="#{computadorService.editarPC()}">
+			<p:commandButton value="Editar PC" id="editarPcBuscado"
+				update="growl" action="#{computadorService.editarPC()}" />
 
 		</p:panelGrid>
 
