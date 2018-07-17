@@ -122,6 +122,7 @@ public class ComputadorBean {
 	public void editarPC() throws IOException {
 		setPcEditado(getPcBuscado());
 		setPcBuscado(new MontagemDeComputador());
+		setRenderPanelGridPcBuscado(false);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("editarPc.xhtml");
 	}
 
@@ -142,8 +143,9 @@ public class ComputadorBean {
 		}
 	}
 	
-	public void salvarEdicao() {
-		
+	public void salvarEdicao() throws IOException {
+		setPcEditado(new MontagemDeComputador());
+		FacesContext.getCurrentInstance().getExternalContext().redirect("pcsMontados.xhtml");
 	}
 
 	public void salvarPc() {

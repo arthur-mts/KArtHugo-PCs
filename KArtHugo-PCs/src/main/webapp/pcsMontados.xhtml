@@ -114,9 +114,13 @@
 			<h:outputText value="Preço total: " />
 			<h:outputText value="R$#{computadorService.pcBuscado.precoTotal}" />
 
-			<p:commandButton value="Editar PC" id="editarPcBuscado"
-				update="growl: form" action="#{computadorService.editarPC()}" />
 
+			<p:column>
+				<p:commandButton value="Editar PC" id="editarPcBuscado"
+					update="growl: form" action="#{computadorService.editarPC()}" />
+				<p:commandButton value="Remover PC" id="removerPcBuscado"
+					update="growl: form" />
+			</p:column>
 		</p:panelGrid>
 
 
