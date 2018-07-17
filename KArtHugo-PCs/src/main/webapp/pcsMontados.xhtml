@@ -10,13 +10,14 @@
 </h:head>
 
 <h:body>
-	<h:form>
+	<h:form id="form">
 		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:tabMenu>
-			<p:menuitem icon="ui-icon-disk" value="PCs Montados"
-				url="pcsMontados.xhtml" />
 			<p:menuitem icon="ui-icon-disk" value="Monte seu PC"
 				url="createPc.xhtml" />
+			<p:menuitem icon="ui-icon-disk" value="PCs Montados"
+				url="pcsMontados.xhtml" />
+
 		</p:tabMenu>
 
 		<p:carousel value="#{computadorService.pcs}"
@@ -26,7 +27,8 @@
 				layout="grid" columnClasses="label,value,value">
 
 				<f:facet name="header">
-					<p:outputLabel style="font-weight: bold;" value="#{pc.nome}" />
+					<p:outputLabel style="font-weight: bold;"
+						value="Nome: #{pc.nome}. ID: #{pc.id}" />
 				</f:facet>
 
 				<h:outputText value="Placa Mãe: " />
@@ -60,10 +62,6 @@
 
 				<h:outputText value="Preço total: " />
 				<h:outputText value="R$#{pc.precoTotal}" />
-				
-				<h:outputText value="ID: "/>
-				<h:outputText value="#{pc.getId}"/>
-
 			</p:panelGrid>
 		</p:carousel>
 
@@ -71,16 +69,16 @@
 			<h:outputText value="Digite o id do seu PC:" />
 			<p:inputText value="#{computadorService.idPc}" id="idPcBuscado" />
 		</p:panelGrid>
-		<p:commandButton value="Buscar PC"
+		<p:commandButton value="Buscar PC" update="growl: form"
 			action="#{computadorService.buscarPC()}" />
 
 		<p:panelGrid columns="3" style="width:100%;margin:10px 0px"
 			layout="grid" columnClasses="label,value,value"
-			rendered="#{renderPanelGridPcBuscado}">
+			rendered="#{computadorService.renderPanelGridPcBuscado}">
 
 			<f:facet name="header">
 				<p:outputLabel style="font-weight: bold;"
-					value="PC Buscado: #{pc.nome}" />
+					value="PC Buscado: #{computadorService.pcBuscado.nome}" />
 			</f:facet>
 
 			<h:outputText value="Placa Mãe: " />
@@ -115,9 +113,9 @@
 
 			<h:outputText value="Preço total: " />
 			<h:outputText value="R$#{computadorService.pcBuscado.precoTotal}" />
-			
+
 			<p:commandButton value="Editar PC" id="editarPcBuscado"
-				update="growl" action="#{computadorService.editarPC()}" />
+				update="growl: form" action="#{computadorService.editarPC()}" />
 
 		</p:panelGrid>
 

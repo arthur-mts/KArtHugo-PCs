@@ -110,12 +110,12 @@ public class ComputadorBean {
 
 	@PostConstruct
 	public void init() {
-		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80, 0));
-		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50, 0));
-		pecas.add(new Peca("Intel Core I5", "cpu", 300, 0));
-		pecas.add(new Peca("Nividia GEForce 1080", "video", 500, 0));
-		pecas.add(new Peca("FOnte 500w", "fonte", 200, 0));
-		pecas.add(new Peca("Hd 1 terabyte", "hd", 100, 0));
+		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80, 1));
+		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50, 1));
+		pecas.add(new Peca("Intel Core I5", "cpu", 300, 1));
+		pecas.add(new Peca("Nividia GEForce 1080", "video", 500, 1));
+		pecas.add(new Peca("FOnte 500w", "fonte", 200, 1));
+		pecas.add(new Peca("Hd 1 terabyte", "hd", 100, 1));
 		setRenderPanelGridPcBuscado(false);
 	}
 
@@ -132,11 +132,13 @@ public class ComputadorBean {
 				setPcBuscado(buscaPC);
 				encontrado = true;
 				setRenderPanelGridPcBuscado(true);
+				setIdPc(0);
 			}
 		}
 		if (!encontrado) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("PC com id" + getIdPc() + " não foi encontrado"));
+			FacesContext.getCurrentInstance().addMessage("ERROR",
+					new FacesMessage("PC com id " + getIdPc() + " nao foi encontrado"));
+			setRenderPanelGridPcBuscado(false);
 		}
 	}
 	

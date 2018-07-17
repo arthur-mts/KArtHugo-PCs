@@ -19,7 +19,6 @@
 				url="createPc.xhtml" />
 		</p:tabMenu>
 
-		<h1>Editor de PC</h1>
 
 		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">
 			<p:outputLabel value="Nome do PC:" />
@@ -29,35 +28,35 @@
 			<p:outputLabel value="Placa mãe:" />
 			<p:selectOneMenu id="placaMae" converter="ConversorPeca"
 				style="width:350px" value="#{computadorService.pcEditado.placaMae}">
-				<f:selectItems value="#{computadorService.pecas}" var="placaMae"
+				<f:selectItems value="#{computadorService.pecas}" 
 					itemLabel="#{placaMae.nome}" itemValue="#{placaMae}" />
 			</p:selectOneMenu>
 
 			<p:outputLabel value="Processador:" />
-			<p:selectOneMenu id="cpu" var="c" converter="ConversorPeca"
+			<p:selectOneMenu id="cpu" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.cpu}">
-				<f:selectItems value="#{computadorService.pecas}" var="cpu"
+				<f:selectItems value="#{computadorService.pecas}" 
 					itemLabel="#{cpu.nome}" itemValue="#{cpu}" />
 			</p:selectOneMenu>
 
 
 
 			<p:outputLabel value="Fonte:" />
-			<p:selectOneMenu id="fonte" var="f" converter="ConversorPeca"
+			<p:selectOneMenu id="fonte"  converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.fonte}">
-				<f:selectItems value="#{computadorService.pecas}" var="fonte"
+				<f:selectItems value="#{computadorService.pecas}" 
 					itemLabel="#{fonte.nome}" itemValue="#{fonte}" />
 			</p:selectOneMenu>
 		</p:panelGrid>
 		<p:panelGrid style="margin-botton:20px" columns="4" layout="grid">
 
 			<p:outputLabel value="Memorias RAM:" />
-			<p:selectOneMenu id="ram" var="r" converter="ConversorPeca"
+			<p:selectOneMenu id="ram"  converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.ram}">
-				<f:selectItems value="#{computadorService.pecas}" var="ram"
+				<f:selectItems value="#{computadorService.pecas}" 
 					itemLabel="#{ram.nome}" itemValue="#{ram}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
@@ -65,10 +64,10 @@
 				value="#{computadorService.pcEditado.ram.quant}" />
 
 			<p:outputLabel value="Memoria Fisica (HD):" />
-			<p:selectOneMenu id="hd" var="h" converter="ConversorPeca"
+			<p:selectOneMenu id="hd" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.hd}">
-				<f:selectItems value="#{computadorService.pecas}" var="hd"
+				<f:selectItems value="#{computadorService.pecas}" 
 					itemLabel="#{hd.nome}" itemValue="#{hd}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
@@ -76,10 +75,10 @@
 				value="#{computadorService.pcEditado.hd.quant}" />
 
 			<p:outputLabel value="Placa de Video:" />
-			<p:selectOneMenu id="video" var="v" converter="ConversorPeca"
+			<p:selectOneMenu id="video" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.video}">
-				<f:selectItems value="#{computadorService.pecas}" var="video"
+				<f:selectItems value="#{computadorService.pecas}" 
 					itemLabel="#{video.nome}" itemValue="#{video}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
