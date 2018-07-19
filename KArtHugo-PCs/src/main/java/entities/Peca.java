@@ -8,8 +8,7 @@ public class Peca {
 	private String nome;
 	private String categoria;
 	private double preco;
-	private int id;
-	// categorias: ram, hd, video etc
+	
 	private int quant;
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "peca_seq_gen")
 	@SequenceGenerator(name = "peca_seq_gen", sequenceName = "peca_id_seq")
