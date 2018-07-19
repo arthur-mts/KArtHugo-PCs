@@ -9,8 +9,6 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.context.PrimeFacesContext;
-
 import entities.MontagemDeComputador;
 import entities.Peca;
 
@@ -141,6 +139,12 @@ public class ComputadorBean {
 					new FacesMessage("PC com id " + getIdPc() + " nao foi encontrado"));
 			setRenderPanelGridPcBuscado(false);
 		}
+	}
+	
+	public void removerPC() {
+		pcs.remove(pcBuscado);
+		pcBuscado = new MontagemDeComputador();
+		setRenderPanelGridPcBuscado(false);
 	}
 	
 	public void salvarEdicao() throws IOException {
