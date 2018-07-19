@@ -34,7 +34,13 @@ public class MontagemDeComputador {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "montagemPc_seq_gen")
 	@SequenceGenerator(name = "montagemPc_seq_gen", sequenceName = "montagemPc_id_seq")
 	private int id;
-	
+	private int quantCpu;
+	private int quantPlaM;
+	private int quantRam;
+	private int quantHd;
+	private int quantVideo;
+	private int quantFonte;
+
 
 	public Peca getCpu() {
 		return cpu;
@@ -113,6 +119,51 @@ public class MontagemDeComputador {
 		this.placaMae = placaMae;
 	}
 
+	public int getQuantCpu() {
+		return quantCpu;
+	}
 
+	public void setQuantCpu(int quantCpu) {
+		this.quantCpu = quantCpu;
+	}
 
+	public int getQuantPlaM() {
+		return quantPlaM;
+	}
+
+	public void setQuantPlaM(int quantPlaM) {
+		this.quantPlaM = quantPlaM;
+	}
+
+	public int getQuantRam() {
+		return quantRam;
+	}
+
+	public void setQuantRam(int quantRam) {
+		this.quantRam = quantRam;
+	}
+
+	public int getQuantHd() {
+		return quantHd;
+	}
+
+	public void setQuantHd(int quantHd) {
+		this.quantHd = quantHd;
+	}
+
+	public int getQuantVideo() {
+		return quantVideo;
+	}
+
+	public void setQuantVideo(int quantVideo) {
+		this.quantVideo = quantVideo;
+	}
+
+	public int getQuantFonte() {
+		return quantFonte;
+	}
+
+	public void setQuantFonte(int quantFonte) {
+		this.quantFonte = quantFonte;
+	}
 }
