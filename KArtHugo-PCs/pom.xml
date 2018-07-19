@@ -52,11 +52,11 @@
 			<version>1.0.10</version>
 		</dependency>
 		<!-- Driver JDBC do MySQL -->
+
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.34</version>
-			<scope>compile</scope>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4.1212</version>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>

@@ -1,13 +1,18 @@
 package entities;
 
+import javax.persistence.*;
+
+@Entity
+
 public class Peca {
 	private String nome;
 	private String categoria;
 	private double preco;
 	private int quant;
-	private int id;
-	private static int cont = 0;
-	// categorias: ram, hd, video etc
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "peca_seq_gen")
+	@SequenceGenerator(name = "peca_seq_gen", sequenceName = "peca_id_seq")
+	@Id
+	private int id;	// categorias: ram, hd, video etc
 
 	public Peca(String nome, String categoria, double preco, int quant) {
 		super();
@@ -15,7 +20,6 @@ public class Peca {
 		this.categoria = categoria;
 		this.preco = preco;
 		this.quant = quant;
-		this.id = cont++;
 	}
 
 	public String getNome() {
@@ -24,8 +28,6 @@ public class Peca {
 
 	public Peca() {
 		super();
-		this.id = cont;
-
 	}
 
 	public void setNome(String nome) {
