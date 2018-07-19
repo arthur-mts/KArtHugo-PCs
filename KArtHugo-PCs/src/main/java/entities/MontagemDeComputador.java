@@ -10,6 +10,12 @@ public class MontagemDeComputador {
 	private double precoTotal;
 	private String nome;
 	private int id;
+	private int quantCpu;
+	private int quantPlaM;
+	private int quantRam;
+	private int quantHd;
+	private int quantVideo;
+	private int quantFonte;
 	private static int cont = 0;
 
 	public Peca getCpu() {
@@ -98,6 +104,51 @@ public class MontagemDeComputador {
 		this.placaMae = placaMae;
 	}
 
+	public int getQuantCpu() {
+		return quantCpu;
+	}
 
+	public void setQuantCpu(int quantCpu) {
+		this.quantCpu = quantCpu;
+	}
 
+	public int getQuantPlaM() {
+		return quantPlaM;
+	}
+
+	public void setQuantPlaM(int quantPlaM) {
+		this.quantPlaM = quantPlaM;
+	}
+
+	public int getQuantRam() {
+		return quantRam;
+	}
+
+	public void setQuantRam(int quantRam) {
+		this.quantRam = quantRam;
+	}
+
+	public int getQuantHd() {
+		return quantHd;
+	}
+
+	public void setQuantHd(int quantHd) {
+		this.quantHd = quantHd;
+	}
+
+	public int getQuantVideo() {
+		return quantVideo;
+	}
+
+	public void setQuantVideo(int quantVideo) {
+		this.quantVideo = quantVideo;
+	}
+
+	public int getQuantFonte() {
+		return quantFonte;
+	}
+
+	public void setQuantFonte(int quantFonte) {
+		this.quantFonte = quantFonte;
+	}
 }

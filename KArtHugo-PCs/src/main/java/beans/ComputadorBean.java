@@ -110,12 +110,12 @@ public class ComputadorBean {
 
 	@PostConstruct
 	public void init() {
-		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80, 1));
-		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50, 1));
-		pecas.add(new Peca("Intel Core I5", "cpu", 300, 1));
-		pecas.add(new Peca("Nividia GEForce 1080", "video", 500, 1));
-		pecas.add(new Peca("FOnte 500w", "fonte", 200, 1));
-		pecas.add(new Peca("Hd 1 terabyte", "hd", 100, 1));
+		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80));
+		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50));
+		pecas.add(new Peca("Intel Core I5", "cpu", 300));
+		pecas.add(new Peca("Nividia GEForce 1080", "video", 500));
+		pecas.add(new Peca("FOnte 500w", "fonte", 200));
+		pecas.add(new Peca("Hd 1 terabyte", "hd", 100));
 		setRenderPanelGridPcBuscado(false);
 	}
 
@@ -149,13 +149,16 @@ public class ComputadorBean {
 	}
 
 	public void salvarPc() {
-		pc.getRam().setQuant(getQntRam());
-		pc.getHd().setQuant(getQntHd());
-		pc.getVideo().setQuant(getQntVideo());
-		double precoTotal = (pc.getRam().getPreco() * pc.getRam().getQuant())
-				+ (pc.getHd().getPreco() * pc.getHd().getQuant())
-				+ (pc.getVideo().getPreco() * pc.getVideo().getQuant()) + (pc.getCpu().getPreco())
-				+ (pc.getFonte().getPreco()) + (pc.getPlacaMae().getPreco());
+		pc.setQuantRam(getQntRam());
+		pc.setQuantHd(getQntHd());
+		pc.setQuantVideo(getQntVideo());
+		pc.setQuantCpu(1);
+		pc.setQuantFonte(1);
+		pc.setQuantPlaM(1);
+		double precoTotal = (pc.getRam().getPreco() * pc.getQuantRam())
+				+ (pc.getHd().getPreco() * pc.getQuantHd())
+				+ (pc.getVideo().getPreco() * pc.getQuantVideo() + (pc.getCpu().getPreco())
+				+ (pc.getFonte().getPreco()) + (pc.getPlacaMae().getPreco()));
 		pc.setPrecoTotal(precoTotal);
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("PC " + pc.getNome() + "Criado", "O preco total foi de " + pc.getPrecoTotal()));

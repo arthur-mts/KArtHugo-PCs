@@ -28,16 +28,16 @@
 			<p:outputLabel value="Placa mãe:" />
 			<p:selectOneMenu id="placaMae" converter="ConversorPeca"
 				style="width:350px" value="#{computadorService.pcEditado.placaMae}">
-				<f:selectItems value="#{computadorService.pecas}" 
-					itemLabel="#{placaMae.nome}" itemValue="#{placaMae}" />
+				<f:selectItems value="#{computadorService.pecas}"  var="placaMaeE"
+					itemLabel="#{placaMaeE.nome}" itemValue="#{placaMaeE}" />
 			</p:selectOneMenu>
 
 			<p:outputLabel value="Processador:" />
 			<p:selectOneMenu id="cpu" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.cpu}">
-				<f:selectItems value="#{computadorService.pecas}" 
-					itemLabel="#{cpu.nome}" itemValue="#{cpu}" />
+				<f:selectItems value="#{computadorService.pecas}" var="cpuE"
+					itemLabel="#{cpuE.nome}" itemValue="#{cpuE}" />
 			</p:selectOneMenu>
 
 
@@ -46,8 +46,8 @@
 			<p:selectOneMenu id="fonte"  converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.fonte}">
-				<f:selectItems value="#{computadorService.pecas}" 
-					itemLabel="#{fonte.nome}" itemValue="#{fonte}" />
+				<f:selectItems value="#{computadorService.pecas}" var="fonteE"
+					itemLabel="#{fonteE.nome}" itemValue="#{fonteE}" />
 			</p:selectOneMenu>
 		</p:panelGrid>
 		<p:panelGrid style="margin-botton:20px" columns="4" layout="grid">
@@ -56,34 +56,34 @@
 			<p:selectOneMenu id="ram"  converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.ram}">
-				<f:selectItems value="#{computadorService.pecas}" 
-					itemLabel="#{ram.nome}" itemValue="#{ram}" />
+				<f:selectItems value="#{computadorService.pecas}" var="ramE"
+					itemLabel="#{ramE.nome}" itemValue="#{ramE}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
 			<p:spinner id="qntRam" style="width:300px"
-				value="#{computadorService.pcEditado.ram.quant}" />
+				value="#{computadorService.pcEditado.quantRam}" />
 
 			<p:outputLabel value="Memoria Fisica (HD):" />
 			<p:selectOneMenu id="hd" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.hd}">
-				<f:selectItems value="#{computadorService.pecas}" 
-					itemLabel="#{hd.nome}" itemValue="#{hd}" />
+				<f:selectItems value="#{computadorService.pecas}" var="hdE"
+					itemLabel="#{hdE.nome}" itemValue="#{hdE}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
 			<p:spinner id="qntHd" style="width:300px"
-				value="#{computadorService.pcEditado.hd.quant}" />
+				value="#{computadorService.pcEditado.quantHd}" />
 
 			<p:outputLabel value="Placa de Video:" />
 			<p:selectOneMenu id="video" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.video}">
-				<f:selectItems value="#{computadorService.pecas}" 
-					itemLabel="#{video.nome}" itemValue="#{video}" />
+				<f:selectItems value="#{computadorService.pecas}" var="videoE"
+					itemLabel="#{videoE.nome}" itemValue="#{videoE}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
 			<p:spinner id="qntVideo" style="width:300px"
-				value="#{computadorService.pcEditado.video.quant}" />
+				value="#{computadorService.pcEditado.quantVideo}" />
 
 		</p:panelGrid>
 		
