@@ -1,14 +1,38 @@
 package entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+
+@Entity
 public class MontagemDeComputador {
+	@ManyToOne
+	@JoinColumn(name="id_peca_cpu")
 	private Peca cpu;
+	@ManyToOne
+	@JoinColumn(name="id_peca_placamae")
 	private Peca placaMae;
+	@ManyToOne
+	@JoinColumn(name="id_peca_ram")
 	private Peca ram;
+	@ManyToOne
+	@JoinColumn(name="id_peca_hd")
 	private Peca hd;
+	@ManyToOne
+	@JoinColumn(name="id_peca_video")
 	private Peca video;
+	@ManyToOne
+	@JoinColumn(name="id_peca_fonte")
 	private Peca fonte;
 	private double precoTotal;
 	private String nome;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "montagemPc_seq_gen")
+	@SequenceGenerator(name = "montagemPc_seq_gen", sequenceName = "montagemPc_id_seq")
 	private int id;
 	private int quantCpu;
 	private int quantPlaM;
@@ -16,7 +40,7 @@ public class MontagemDeComputador {
 	private int quantHd;
 	private int quantVideo;
 	private int quantFonte;
-	private static int cont = 0;
+
 
 	public Peca getCpu() {
 		return cpu;
@@ -83,17 +107,8 @@ public class MontagemDeComputador {
 		this.id = id;
 	}
 
-	public static int getCont() {
-		return cont;
-	}
-
-	public static void setCont(int cont) {
-		MontagemDeComputador.cont = cont;
-	}
-
 	public MontagemDeComputador() {
 		super();
-		setId(cont++);
 	}
 
 	public Peca getPlacaMae() {
