@@ -60,7 +60,7 @@
 					itemLabel="#{ram.nome}: R$#{ram.preco}" itemValue="#{ram}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
-			<p:spinner id="spinQntRam" style="width:300px"
+			<p:spinner min="1" max="6" id="spinQntRam" style="width:300px"
 				value="#{computadorService.qntRam}" />
 
 			<p:outputLabel value="Memoria Fisica (HD):" />
@@ -71,7 +71,7 @@
 					itemLabel="#{hd.nome}: R$#{hd.preco}" itemValue="#{hd}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
-			<p:spinner id="spinQntHd" style="width:300px"
+			<p:spinner id="spinQntHd" style="width:300px" min="1" max="6"
 				value="#{computadorService.qntHd}" />
 
 			<p:outputLabel value="Placa de Video:" />
@@ -82,7 +82,7 @@
 					itemLabel="#{video.nome}: R$#{video.preco}" itemValue="#{video}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
-			<p:spinner id="spinQntVideo" style="width:300px"
+			<p:spinner id="spinQntVideo" style="width:300px" min="1" max="6"
 				value="#{computadorService.qntVideo}" />
 
 		</p:panelGrid>

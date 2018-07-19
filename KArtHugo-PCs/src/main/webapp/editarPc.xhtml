@@ -60,7 +60,7 @@
 					itemLabel="#{ramE.nome}" itemValue="#{ramE}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
-			<p:spinner id="qntRam" style="width:300px"
+			<p:spinner id="qntRam" style="width:300px" min="1" max="6"
 				value="#{computadorService.pcEditado.quantRam}" />
 
 			<p:outputLabel value="Memoria Fisica (HD):" />
@@ -71,7 +71,7 @@
 					itemLabel="#{hdE.nome}" itemValue="#{hdE}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
-			<p:spinner id="qntHd" style="width:300px"
+			<p:spinner id="qntHd" style="width:300px" min="1" max="6"
 				value="#{computadorService.pcEditado.quantHd}" />
 
 			<p:outputLabel value="Placa de Video:" />
@@ -82,7 +82,7 @@
 					itemLabel="#{videoE.nome}" itemValue="#{videoE}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
-			<p:spinner id="qntVideo" style="width:300px"
+			<p:spinner id="qntVideo" style="width:300px" min="1" max="6"
 				value="#{computadorService.pcEditado.quantVideo}" />
 
 		</p:panelGrid>
