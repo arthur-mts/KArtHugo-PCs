@@ -8,9 +8,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-
 import entities.MontagemDeComputador;
 import entities.Peca;
+import services.GerenciadorBD;
 
 @ApplicationScoped
 @ManagedBean(name = "computadorService")
@@ -21,6 +21,7 @@ public class ComputadorBean {
 	private MontagemDeComputador pcEditado;
 	private MontagemDeComputador pc = new MontagemDeComputador();
 	private int idPc;
+	private GerenciadorBD gbd;
 	private static int cont = 0;
 	private boolean renderPanelGridPcBuscado;
 	private int qntRam;
@@ -119,6 +120,7 @@ public class ComputadorBean {
 
 	public void editarPC() throws IOException {
 		setPcEditado(getPcBuscado());
+		gbd.iniciarEdicaorPC(pcBuscado);
 		setPcBuscado(new MontagemDeComputador());
 		setRenderPanelGridPcBuscado(false);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("editarPc.xhtml");
@@ -143,11 +145,13 @@ public class ComputadorBean {
 	
 	public void removerPC() {
 		pcs.remove(pcBuscado);
+		gbd.removerPC(pcBuscado);
 		pcBuscado = new MontagemDeComputador();
 		setRenderPanelGridPcBuscado(false);
 	}
 	
 	public void salvarEdicao() throws IOException {
+		gbd.concluirEdicaoPC(pcEditado);
 		setPcEditado(new MontagemDeComputador());
 		FacesContext.getCurrentInstance().getExternalContext().redirect("pcsMontados.xhtml");
 	}
@@ -167,6 +171,7 @@ public class ComputadorBean {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("PC " + pc.getNome() + "Criado", "O preco total foi de " + pc.getPrecoTotal()));
 		pcs.add(pc);
+		gbd.salvar(pc);
 		pc = new MontagemDeComputador();
 		setQntHd(0);
 		setQntRam(0);
@@ -190,6 +195,14 @@ public class ComputadorBean {
 
 	public void setRenderPanelGridPcBuscado(boolean renderPanelGridPcBuscado) {
 		this.renderPanelGridPcBuscado = renderPanelGridPcBuscado;
+	}
+
+	public GerenciadorBD getGbd() {
+		return gbd;
+	}
+
+	public void setGbd(GerenciadorBD gbd) {
+		this.gbd = gbd;
 	}
 
 }
