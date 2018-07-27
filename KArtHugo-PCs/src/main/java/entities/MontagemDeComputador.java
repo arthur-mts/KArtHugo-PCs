@@ -8,31 +8,31 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-@Entity
+/*@Entity*/
 public class MontagemDeComputador {
-	@ManyToOne
-	@JoinColumn(name="id_peca_cpu")
+	/*@ManyToOne*/
+	/*@JoinColumn(name="id_peca_cpu")*/
 	private Peca cpu;
-	@ManyToOne
-	@JoinColumn(name="id_peca_placamae")
+	/*@ManyToOne
+	@JoinColumn(name="id_peca_placamae")*/
 	private Peca placaMae;
-	@ManyToOne
-	@JoinColumn(name="id_peca_ram")
+	/*@ManyToOne
+	@JoinColumn(name="id_peca_ram")*/
 	private Peca ram;
-	@ManyToOne
-	@JoinColumn(name="id_peca_hd")
+	/*@ManyToOne
+	@JoinColumn(name="id_peca_hd")*/
 	private Peca hd;
-	@ManyToOne
-	@JoinColumn(name="id_peca_video")
+	/*@ManyToOne
+	@JoinColumn(name="id_peca_video")*/
 	private Peca video;
-	@ManyToOne
-	@JoinColumn(name="id_peca_fonte")
+	/*@ManyToOne
+	@JoinColumn(name="id_peca_fonte")*/
 	private Peca fonte;
 	private double precoTotal;
 	private String nome;
-	@Id
+	/*@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "montagemPc_seq_gen")
-	@SequenceGenerator(name = "montagemPc_seq_gen", sequenceName = "montagemPc_id_seq")
+	@SequenceGenerator(name = "montagemPc_seq_gen", sequenceName = "montagemPc_id_seq")*/
 	private int id;
 	private int quantCpu;
 	private int quantPlaM;
