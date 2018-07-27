@@ -10,6 +10,7 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class MontagemDeComputador {
+
 	@ManyToOne
 	@JoinColumn(name = "id_peca_cpu")
 	private Peca cpu;
@@ -30,7 +31,27 @@ public class MontagemDeComputador {
 	private Peca fonte;
 	private double precoTotal;
 	private String nome;
-	@Id()
+	@ManyToOne
+	@JoinColumn(name="id_peca_cpu")
+	private Peca cpu;
+	@ManyToOne
+	@JoinColumn(name="id_peca_placamae")
+	private Peca placaMae;
+	@ManyToOne
+	@JoinColumn(name="id_peca_ram")
+	private Peca ram;
+	@ManyToOne
+	@JoinColumn(name="id_peca_hd")
+	private Peca hd;
+	@ManyToOne
+	@JoinColumn(name="id_peca_video")
+	private Peca video;
+	@ManyToOne
+	@JoinColumn(name="id_peca_fonte")
+	private Peca fonte;
+	private double precoTotal;
+	private String nome;
+	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "montagemPc_seq_gen")
 	@SequenceGenerator(name = "montagemPc_seq_gen", sequenceName = "montagemPc_id_seq")
 	private int id;
