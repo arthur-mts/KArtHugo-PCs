@@ -8,9 +8,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-
 import entities.MontagemDeComputador;
 import entities.Peca;
+import services.GerenciadorBD;
 
 @ApplicationScoped
 @ManagedBean(name = "computadorService")
@@ -21,6 +21,7 @@ public class ComputadorBean {
 	private MontagemDeComputador pcEditado;
 	private MontagemDeComputador pc = new MontagemDeComputador();
 	private int idPc;
+	private GerenciadorBD gbd;
 	private static int cont = 0;
 	private boolean renderPanelGridPcBuscado;
 	private int qntRam;
@@ -108,17 +109,20 @@ public class ComputadorBean {
 
 	@PostConstruct
 	public void init() {
-		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80));
-		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50));
-		pecas.add(new Peca("Intel Core I5", "cpu", 300));
-		pecas.add(new Peca("Nividia GEForce 1080", "video", 500));
-		pecas.add(new Peca("FOnte 500w", "fonte", 200));
-		pecas.add(new Peca("Hd 1 terabyte", "hd", 100));
+		gbd = new GerenciadorBD();
+		pecas = gbd.list(Peca.class);
+//		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80));
+//		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50));
+//		pecas.add(new Peca("Intel Core I5", "cpu", 300));
+//		pecas.add(new Peca("Nividia GEForce 1080", "video", 500));
+//		pecas.add(new Peca("FOnte 500w", "fonte", 200));
+//		pecas.add(new Peca("Hd 1 terabyte", "hd", 100));
 		setRenderPanelGridPcBuscado(false);
 	}
 
 	public void editarPC() throws IOException {
 		setPcEditado(getPcBuscado());
+		gbd.iniciarEdicaorPC(pcBuscado);
 		setPcBuscado(new MontagemDeComputador());
 		setRenderPanelGridPcBuscado(false);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("editarPc.xhtml");
@@ -143,11 +147,13 @@ public class ComputadorBean {
 	
 	public void removerPC() {
 		pcs.remove(pcBuscado);
+		gbd.removerPC(pcBuscado);
 		pcBuscado = new MontagemDeComputador();
 		setRenderPanelGridPcBuscado(false);
 	}
 	
 	public void salvarEdicao() throws IOException {
+		gbd.concluirEdicaoPC(pcEditado);
 		setPcEditado(new MontagemDeComputador());
 		FacesContext.getCurrentInstance().getExternalContext().redirect("pcsMontados.xhtml");
 	}
@@ -167,6 +173,7 @@ public class ComputadorBean {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("PC " + pc.getNome() + "Criado", "O preco total foi de " + pc.getPrecoTotal()));
 		pcs.add(pc);
+		gbd.salvar(pc);
 		pc = new MontagemDeComputador();
 		setQntHd(0);
 		setQntRam(0);
@@ -190,6 +197,14 @@ public class ComputadorBean {
 
 	public void setRenderPanelGridPcBuscado(boolean renderPanelGridPcBuscado) {
 		this.renderPanelGridPcBuscado = renderPanelGridPcBuscado;
+	}
+
+	public GerenciadorBD getGbd() {
+		return gbd;
+	}
+
+	public void setGbd(GerenciadorBD gbd) {
+		this.gbd = gbd;
 	}
 
 }

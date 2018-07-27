@@ -1,4 +1,4 @@
-package beans;
+package converters;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -6,6 +6,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
+import beans.ComputadorBean;
 import entities.Peca;
 
 @FacesConverter(value="ConversorPeca")
