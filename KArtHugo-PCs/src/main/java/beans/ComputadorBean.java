@@ -109,12 +109,14 @@ public class ComputadorBean {
 
 	@PostConstruct
 	public void init() {
-		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80));
-		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50));
-		pecas.add(new Peca("Intel Core I5", "cpu", 300));
-		pecas.add(new Peca("Nividia GEForce 1080", "video", 500));
-		pecas.add(new Peca("FOnte 500w", "fonte", 200));
-		pecas.add(new Peca("Hd 1 terabyte", "hd", 100));
+		gbd = new GerenciadorBD();
+		pecas = gbd.list(Peca.class);
+//		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80));
+//		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50));
+//		pecas.add(new Peca("Intel Core I5", "cpu", 300));
+//		pecas.add(new Peca("Nividia GEForce 1080", "video", 500));
+//		pecas.add(new Peca("FOnte 500w", "fonte", 200));
+//		pecas.add(new Peca("Hd 1 terabyte", "hd", 100));
 		setRenderPanelGridPcBuscado(false);
 	}
 

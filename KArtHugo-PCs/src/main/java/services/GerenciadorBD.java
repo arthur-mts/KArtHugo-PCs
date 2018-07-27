@@ -1,7 +1,10 @@
 package services;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import entities.MontagemDeComputador;
 
@@ -45,11 +48,19 @@ public class GerenciadorBD {
 		em.getTransaction().begin();
 		return em.find(MontagemDeComputador.class, pc);
 	}
-	
+
 	public void concluirEdicaoPC(MontagemDeComputador pc) {
 		em.merge(pc);
 		em.getTransaction().commit();
 		em.close();
+	}
+
+	public List list(Class classe) {
+		em.getTransaction().begin();
+		Query query = em.createQuery("from " + classe.getName());
+		em.getTransaction().commit();
+		em.close();
+		return query.getResultList();
 	}
 
 }
