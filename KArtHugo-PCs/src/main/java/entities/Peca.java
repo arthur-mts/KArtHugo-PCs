@@ -2,15 +2,15 @@ package entities;
 
 import javax.persistence.*;
 
-/*@Entity*/
+@Entity
 
 public class Peca {
 	private String nome;
 	private String categoria;
 	private double preco;
-	/*@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "peca_seq_gen")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "peca_seq_gen")
 	@SequenceGenerator(name = "peca_seq_gen", sequenceName = "peca_id_seq")
-	@Id*/
+	@Id
 	private int id;	// categorias: ram, hd, video etc
 
 	public Peca(String nome, String categoria, double preco) {

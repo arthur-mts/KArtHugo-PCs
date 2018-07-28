@@ -12,42 +12,22 @@ import javax.persistence.SequenceGenerator;
 public class MontagemDeComputador {
 
 	@ManyToOne
-	@JoinColumn(name = "id_peca_cpu")
+	@JoinColumn(name = "id_cpu_pc")
 	private Peca cpu;
 	@ManyToOne
-	@JoinColumn(name = "id_peca_placamae")
+	@JoinColumn(name = "id_placamae_pc")
 	private Peca placaMae;
 	@ManyToOne
-	@JoinColumn(name = "id_peca_ram")
+	@JoinColumn(name = "id_ram_pc")
 	private Peca ram;
 	@ManyToOne
-	@JoinColumn(name = "id_peca_hd")
+	@JoinColumn(name = "id_hd_pc")
 	private Peca hd;
 	@ManyToOne
-	@JoinColumn(name = "id_peca_video")
+	@JoinColumn(name = "id_video_pc")
 	private Peca video;
 	@ManyToOne
 	@JoinColumn(name = "id_peca_fonte")
-	private Peca fonte;
-	private double precoTotal;
-	private String nome;
-	@ManyToOne
-	@JoinColumn(name="id_peca_cpu")
-	private Peca cpu;
-	@ManyToOne
-	@JoinColumn(name="id_peca_placamae")
-	private Peca placaMae;
-	@ManyToOne
-	@JoinColumn(name="id_peca_ram")
-	private Peca ram;
-	@ManyToOne
-	@JoinColumn(name="id_peca_hd")
-	private Peca hd;
-	@ManyToOne
-	@JoinColumn(name="id_peca_video")
-	private Peca video;
-	@ManyToOne
-	@JoinColumn(name="id_peca_fonte")
 	private Peca fonte;
 	private double precoTotal;
 	private String nome;

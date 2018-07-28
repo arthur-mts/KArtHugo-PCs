@@ -55,7 +55,7 @@ public class GerenciadorBD {
 		em.close();
 	}
 
-	public List list(Class classe) {
+	public List listPeca(Class classe) {
 		em.getTransaction().begin();
 		Query query = em.createQuery("from " + classe.getName());
 		em.getTransaction().commit();
