@@ -13,7 +13,7 @@ public class GerenciadorBD {
 
 	public GerenciadorBD() {
 		setEm(Persistence.createEntityManagerFactory("KArtHugo").createEntityManager());
-
+		//em.getTransaction().begin();
 	}
 
 	public EntityManager getEm() {
@@ -28,15 +28,15 @@ public class GerenciadorBD {
 		em.getTransaction().begin();
 		em.persist(obj);
 		em.getTransaction().commit();
-		em.close();
+		//em.close();
 	}
 
 	public void removerPC(MontagemDeComputador pc) {
-		MontagemDeComputador pcf = em.find(MontagemDeComputador.class, pc);
 		em.getTransaction().begin();
-		em.remove(pcf);
+		//MontagemDeComputador pcf = em.find(MontagemDeComputador.class, pc);
+		em.remove(pc);
 		em.getTransaction().commit();
-		em.close();
+		//em.close();
 
 	}
 
@@ -44,22 +44,23 @@ public class GerenciadorBD {
 		em.close();
 	}
 
-	public MontagemDeComputador iniciarEdicaorPC(MontagemDeComputador pc) {
+	/*public MontagemDeComputador iniciarEdicaorPC(MontagemDeComputador pc) {
 		em.getTransaction().begin();
-		return em.find(MontagemDeComputador.class, pc);
-	}
+		return null;
+	}*/
 
-	public void concluirEdicaoPC(MontagemDeComputador pc) {
-		em.merge(pc);
+	public void editar(Object o) {
+		em.getTransaction().begin();
+		em.merge(o);
 		em.getTransaction().commit();
-		em.close();
+		//em.close();
 	}
 
-	public List listPeca(Class classe) {
+	public List list(Class classe) {
 		em.getTransaction().begin();
 		Query query = em.createQuery("from " + classe.getName());
 		em.getTransaction().commit();
-		em.close();
+		//em.close();
 		return query.getResultList();
 	}
 
