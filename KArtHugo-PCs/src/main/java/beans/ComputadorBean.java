@@ -104,19 +104,20 @@ public class ComputadorBean {
 	@PostConstruct
 	public void init() {
 		gbd = new GerenciadorBD();
-		// pecas = gbd.list(Peca.class);
-		pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80));
-		pecas.add(new Peca("Hyper Fury 4gb", "ram", 50));
-		pecas.add(new Peca("Intel Core I5", "cpu", 300));
-		pecas.add(new Peca("Nividia GEForce 1080", "video", 500));
-		pecas.add(new Peca("FOnte 500w", "fonte", 200));
-		pecas.add(new Peca("Hd 1 terabyte", "hd", 100));
+		pecas = gbd.list(Peca.class);
+		pcs = gbd.list(MontagemDeComputador.class);
+		//pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80));
+		//pecas.add(new Peca("Hyper Fury 4gb", "ram", 50));
+		//pecas.add(new Peca("Intel Core I5", "cpu", 300));
+		//pecas.add(new Peca("Nividia GEForce 1080", "video", 500));
+		//pecas.add(new Peca("FOnte 500w", "fonte", 200));
+		//pecas.add(new Peca("Hd 1 terabyte", "hd", 100));
 		setRenderPanelGridPcBuscado(false);
 	}
 
 	public void editarPC() throws IOException {
 		setPcEditado(getPcBuscado());
-		gbd.iniciarEdicaorPC(pcBuscado);
+		//gbd.iniciarEdicaorPC(pcBuscado);
 		setPcBuscado(new MontagemDeComputador());
 		setRenderPanelGridPcBuscado(false);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("editarPc.xhtml");
@@ -140,14 +141,14 @@ public class ComputadorBean {
 	}
 
 	public void removerPC() {
-		pcs.remove(pcBuscado);
 		gbd.removerPC(pcBuscado);
+		pcs = gbd.list(MontagemDeComputador.class);
 		pcBuscado = new MontagemDeComputador();
 		setRenderPanelGridPcBuscado(false);
 	}
 
 	public void salvarEdicao() throws IOException {
-		gbd.concluirEdicaoPC(pcEditado);
+		gbd.editar(pcEditado);
 		setPcEditado(new MontagemDeComputador());
 		FacesContext.getCurrentInstance().getExternalContext().redirect("pcsMontados.xhtml");
 	}
@@ -165,8 +166,8 @@ public class ComputadorBean {
 		pc.setPrecoTotal(precoTotal);
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("PC " + pc.getNome() + "Criado", "O preco total foi de " + pc.getPrecoTotal()));
-		pcs.add(pc);
 		gbd.salvar(pc);
+		pcs = gbd.list(MontagemDeComputador.class);
 		pc = new MontagemDeComputador();
 		setQntHd(0);
 		setQntRam(0);

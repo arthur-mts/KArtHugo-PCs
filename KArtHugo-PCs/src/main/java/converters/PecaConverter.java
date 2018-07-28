@@ -17,7 +17,7 @@ public class PecaConverter implements Converter {
 		if (value != null && value.trim().length() > 0) {
 			try {
 				ComputadorBean service = (ComputadorBean) fc.getExternalContext().getApplicationMap().get("computadorService");
-				return service.getPecas().get(Integer.parseInt(value));
+				return service.getPecas().get(Integer.parseInt(value)-1);
 			} catch (NumberFormatException e) {
 				throw new ConverterException();
 						
