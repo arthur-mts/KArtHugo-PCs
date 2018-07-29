@@ -1,5 +1,6 @@
 package beans;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.swing.text.html.ImageView;
+
 import entities.MontagemDeComputador;
 import entities.Peca;
 import services.GerenciadorBD;
@@ -28,6 +31,12 @@ public class ComputadorBean {
 	private int qntVideo;
 	private int qntHd;
 	private List<Peca> pecas = new ArrayList<Peca>();
+	private List<Peca> placas = new ArrayList<Peca>();
+	private List<Peca> cpus = new ArrayList<Peca>();
+	private List<Peca> rams = new ArrayList<Peca>();
+	private List<Peca> hds = new ArrayList<Peca>();
+	private List<Peca> fontes = new ArrayList<Peca>();
+	private List<Peca> videos = new ArrayList<Peca>();
 
 	public List<MontagemDeComputador> getPcs() {
 		return pcs;
@@ -59,14 +68,6 @@ public class ComputadorBean {
 
 	public static void setCont(int cont) {
 		ComputadorBean.cont = cont;
-	}
-
-	public List<Peca> getPecas() {
-		return pecas;
-	}
-
-	public void setPecas(List<Peca> pecas) {
-		this.pecas = pecas;
 	}
 
 	public int getQntRam() {
@@ -106,18 +107,86 @@ public class ComputadorBean {
 		gbd = new GerenciadorBD();
 		pecas = gbd.list(Peca.class);
 		pcs = gbd.list(MontagemDeComputador.class);
-		//pecas.add(new Peca("Placa Mae Gigabyte", "placaMae", 80));
-		//pecas.add(new Peca("Hyper Fury 4gb", "ram", 50));
-		//pecas.add(new Peca("Intel Core I5", "cpu", 300));
-		//pecas.add(new Peca("Nividia GEForce 1080", "video", 500));
-		//pecas.add(new Peca("FOnte 500w", "fonte", 200));
-		//pecas.add(new Peca("Hd 1 terabyte", "hd", 100));
+		for (Peca p : pecas) {
+			if (p.getCategoria().equals("cpu")) {
+				cpus.add(p);
+
+			} else if (p.getCategoria().equals("ram")) {
+				rams.add(p);
+			} else if (p.getCategoria().equals("video")) {
+				videos.add(p);
+			} else if (p.getCategoria().equals("fonte")) {
+				fontes.add(p);
+			} else if (p.getCategoria().equals("placa")) {
+				placas.add(p);
+			} else if (p.getCategoria().equals("hd")) {
+				hds.add(p);
+			}
+		}
+
 		setRenderPanelGridPcBuscado(false);
+	}
+
+	
+	public List<Peca> getPecas() {
+		return pecas;
+	}
+
+	public void setPecas(List<Peca> pecas) {
+		this.pecas = pecas;
+	}
+
+	public List<Peca> getPlacas() {
+		return placas;
+	}
+
+	public void setPlacas(List<Peca> placas) {
+		this.placas = placas;
+	}
+
+	public List<Peca> getCpus() {
+		return cpus;
+	}
+
+	public void setCpus(List<Peca> cpus) {
+		this.cpus = cpus;
+	}
+
+	public List<Peca> getRams() {
+		return rams;
+	}
+
+	public void setRams(List<Peca> rams) {
+		this.rams = rams;
+	}
+
+	public List<Peca> getHds() {
+		return hds;
+	}
+
+	public void setHds(List<Peca> hds) {
+		this.hds = hds;
+	}
+
+	public List<Peca> getFontes() {
+		return fontes;
+	}
+
+	public void setFontes(List<Peca> fontes) {
+		this.fontes = fontes;
+	}
+
+	public List<Peca> getVideos() {
+		return videos;
+	}
+
+	public void setVideos(List<Peca> videos) {
+		this.videos = videos;
 	}
 
 	public void editarPC() throws IOException {
 		setPcEditado(getPcBuscado());
-		//gbd.iniciarEdicaorPC(pcBuscado);
+		// gbd.iniciarEdicaorPC(pcBuscado);
 		setPcBuscado(new MontagemDeComputador());
 		setRenderPanelGridPcBuscado(false);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("editarPc.xhtml");

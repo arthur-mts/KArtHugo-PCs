@@ -7,6 +7,8 @@ import javax.persistence.*;
 public class Peca {
 	private String nome;
 	private String categoria;
+	private String marca;
+	private String descricao;
 	private double preco;
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "peca_seq_gen")
 	@SequenceGenerator(name = "peca_seq_gen", sequenceName = "peca_id_seq")
@@ -56,5 +58,23 @@ public class Peca {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	
 
 }

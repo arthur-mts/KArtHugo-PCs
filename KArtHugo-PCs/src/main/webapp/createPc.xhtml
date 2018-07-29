@@ -26,8 +26,8 @@
 			<p:outputLabel value="Placa mãe:" />
 			<p:selectOneMenu id="placaMae" converter="ConversorPeca"
 				style="width:350px" value="#{computadorService.pc.placaMae}">
-				<f:selectItems value="#{computadorService.pecas}" var="placaMae"
-					itemLabel="#{placaMae.nome}: R$#{placaMae.preco}"
+				<f:selectItems value="#{computadorService.placas}" var="placaMae"
+					itemLabel="#{placaMae.marca} #{placaMae.nome}: R$#{placaMae.preco}"
 					itemValue="#{placaMae}" />
 			</p:selectOneMenu>
 
@@ -35,8 +35,8 @@
 			<p:selectOneMenu id="cpu" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pc.cpu}">
-				<f:selectItems value="#{computadorService.pecas}" var="cpu"
-					itemLabel="#{cpu.nome}: R$#{cpu.preco}" itemValue="#{cpu}" />
+				<f:selectItems value="#{computadorService.cpus}" var="cpu"
+					itemLabel="#{cpu.marca} #{cpu.nome}: R$#{cpu.preco}" itemValue="#{cpu}" />
 			</p:selectOneMenu>
 
 
@@ -45,8 +45,8 @@
 			<p:selectOneMenu id="fonte" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pc.fonte}">
-				<f:selectItems value="#{computadorService.pecas}" var="fonte"
-					itemLabel="#{fonte.nome}: R$#{fonte.preco}" itemValue="#{fonte}" />
+				<f:selectItems value="#{computadorService.fontes}" var="fonte"
+					itemLabel="#{fonte.marca} #{fonte.nome}: R$#{fonte.preco}" itemValue="#{fonte}" />
 			</p:selectOneMenu>
 
 		</p:panelGrid>
@@ -56,8 +56,8 @@
 			<p:selectOneMenu id="ram" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pc.ram}">
-				<f:selectItems value="#{computadorService.pecas}" var="ram"
-					itemLabel="#{ram.nome}: R$#{ram.preco}" itemValue="#{ram}" />
+				<f:selectItems value="#{computadorService.rams}" var="ram"
+					itemLabel="#{ram.marca} #{ram.nome}: R$#{ram.preco}" itemValue="#{ram}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
 			<p:spinner min="1" max="6" id="spinQntRam" style="width:300px"
@@ -67,8 +67,8 @@
 			<p:selectOneMenu id="hd" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pc.hd}">
-				<f:selectItems value="#{computadorService.pecas}" var="hd"
-					itemLabel="#{hd.nome}: R$#{hd.preco}" itemValue="#{hd}" />
+				<f:selectItems value="#{computadorService.hds}" var="hd"
+					itemLabel="#{hd.marca} #{hd.nome}: R$#{hd.preco}" itemValue="#{hd}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
 			<p:spinner id="spinQntHd" style="width:300px" min="1" max="6"
@@ -78,8 +78,8 @@
 			<p:selectOneMenu id="video" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pc.video}">
-				<f:selectItems value="#{computadorService.pecas}" var="video"
-					itemLabel="#{video.nome}: R$#{video.preco}" itemValue="#{video}" />
+				<f:selectItems value="#{computadorService.videos}" var="video"
+					itemLabel="#{video.marca} #{video.nome}: R$#{video.preco}" itemValue="#{video}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
 			<p:spinner id="spinQntVideo" style="width:300px" min="1" max="6"
