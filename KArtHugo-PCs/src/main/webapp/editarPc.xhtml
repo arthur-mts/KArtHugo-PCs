@@ -28,7 +28,7 @@
 			<p:outputLabel value="Placa mãe:" />
 			<p:selectOneMenu id="placaMae" converter="ConversorPeca"
 				style="width:350px" value="#{computadorService.pcEditado.placaMae}">
-				<f:selectItems value="#{computadorService.pecas}"  var="placaMaeE"
+				<f:selectItems value="#{computadorService.placas}"  var="placaMaeE"
 					itemLabel="#{placaMaeE.nome}" itemValue="#{placaMaeE}" />
 			</p:selectOneMenu>
 
@@ -36,7 +36,7 @@
 			<p:selectOneMenu id="cpu" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.cpu}">
-				<f:selectItems value="#{computadorService.pecas}" var="cpuE"
+				<f:selectItems value="#{computadorService.cpus}" var="cpuE"
 					itemLabel="#{cpuE.nome}" itemValue="#{cpuE}" />
 			</p:selectOneMenu>
 
@@ -46,7 +46,7 @@
 			<p:selectOneMenu id="fonte"  converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.fonte}">
-				<f:selectItems value="#{computadorService.pecas}" var="fonteE"
+				<f:selectItems value="#{computadorService.fontes}" var="fonteE"
 					itemLabel="#{fonteE.nome}" itemValue="#{fonteE}" />
 			</p:selectOneMenu>
 		</p:panelGrid>
@@ -56,7 +56,7 @@
 			<p:selectOneMenu id="ram"  converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.ram}">
-				<f:selectItems value="#{computadorService.pecas}" var="ramE"
+				<f:selectItems value="#{computadorService.rams}" var="ramE"
 					itemLabel="#{ramE.nome}" itemValue="#{ramE}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
@@ -67,7 +67,7 @@
 			<p:selectOneMenu id="hd" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.hd}">
-				<f:selectItems value="#{computadorService.pecas}" var="hdE"
+				<f:selectItems value="#{computadorService.hds}" var="hdE"
 					itemLabel="#{hdE.nome}" itemValue="#{hdE}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
@@ -78,7 +78,7 @@
 			<p:selectOneMenu id="video" converter="ConversorPeca"
 				panelStyle="width:350px" style="width:350px"
 				value="#{computadorService.pcEditado.video}">
-				<f:selectItems value="#{computadorService.pecas}" var="videoE"
+				<f:selectItems value="#{computadorService.videos}" var="videoE"
 					itemLabel="#{videoE.nome}" itemValue="#{videoE}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="Quantidade: " />
