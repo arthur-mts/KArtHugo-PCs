@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class MontagemDeComputador {
+public class MontagemDeComputador implements Identificavel{
 
 	@ManyToOne
 	@JoinColumn(name = "id_cpu_pc")
@@ -34,7 +34,7 @@ public class MontagemDeComputador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "montagemPc_seq_gen")
 	@SequenceGenerator(name = "montagemPc_seq_gen", sequenceName = "montagemPc_id_seq")
-	private int id;
+	private Long id;
 	private int quantCpu;
 	private int quantPlaM;
 	private int quantRam;
@@ -98,13 +98,7 @@ public class MontagemDeComputador {
 		this.nome = nome;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 
 	public MontagemDeComputador() {
 		super();
@@ -164,5 +158,16 @@ public class MontagemDeComputador {
 
 	public void setQuantFonte(int quantFonte) {
 		this.quantFonte = quantFonte;
+	}
+
+	@Override
+	public Long getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+		
 	}
 }

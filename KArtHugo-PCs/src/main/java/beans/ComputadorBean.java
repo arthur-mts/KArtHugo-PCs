@@ -2,6 +2,7 @@ package beans;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -14,10 +15,11 @@ import javax.swing.text.html.ImageView;
 import entities.MontagemDeComputador;
 import entities.Peca;
 import services.GerenciadorBD;
+import services.PecaService;
 
 @ApplicationScoped
 @ManagedBean(name = "computadorService")
-public class ComputadorBean {
+public class ComputadorBean implements Serializable {
 	// Gerencia pecas
 	private List<MontagemDeComputador> pcs = new ArrayList<MontagemDeComputador>();
 	private MontagemDeComputador pcBuscado = new MontagemDeComputador();
@@ -37,6 +39,7 @@ public class ComputadorBean {
 	private List<Peca> hds = new ArrayList<Peca>();
 	private List<Peca> fontes = new ArrayList<Peca>();
 	private List<Peca> videos = new ArrayList<Peca>();
+	private PecaService pecaService;
 
 	public List<MontagemDeComputador> getPcs() {
 		return pcs;
@@ -266,6 +269,14 @@ public class ComputadorBean {
 
 	public void setGbd(GerenciadorBD gbd) {
 		this.gbd = gbd;
+	}
+
+	public PecaService getPecaService() {
+		return pecaService;
+	}
+
+	public void setPecaService(PecaService pecaService) {
+		this.pecaService = pecaService;
 	}
 
 }

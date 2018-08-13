@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ApplicationScoped;
@@ -10,11 +11,11 @@ import entities.Peca;
 @ManagedBean(name="pecasBean")
 @ApplicationScoped
 
-public class PecasBean {
+public class PecasBean implements Serializable {
 	private List<Peca> pecas = new ArrayList<Peca>();
 	private Peca peca = new Peca();
 	private Peca pecaBuscada = new Peca();
-	private static int cont = 0;
+	//private static int cont = 0;
 	private String nomePeca;
 		
 
@@ -42,13 +43,13 @@ public class PecasBean {
 		this.pecaBuscada = pecaBuscada;
 	}
 
-	public static int getCont() {
+	/*public static int getCont() {
 		return cont;
 	}
 
 	public static void setCont(int cont) {
 		PecasBean.cont = cont;
-	}
+	}*/
 
 	public String getNomePeca() {
 		return nomePeca;

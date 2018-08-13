@@ -2,18 +2,23 @@ package services;
 
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import entities.MontagemDeComputador;
+import util.TransacionalCdi;
 
+@ApplicationScoped
 public class GerenciadorBD {
+	
+	@Inject
 	private EntityManager em;
 
 	public GerenciadorBD() {
-		setEm(Persistence.createEntityManagerFactory("KArtHugo").createEntityManager());
-		//em.getTransaction().begin();
+		
 	}
 
 	public EntityManager getEm() {
@@ -24,18 +29,14 @@ public class GerenciadorBD {
 		this.em = em;
 	}
 
+	@TransacionalCdi
 	public void salvar(Object obj) {
-		em.getTransaction().begin();
 		em.persist(obj);
-		em.getTransaction().commit();
-		//em.close();
 	}
-
+	@TransacionalCdi
 	public void removerPC(MontagemDeComputador pc) {
-		em.getTransaction().begin();
 		//MontagemDeComputador pcf = em.find(MontagemDeComputador.class, pc);
 		em.remove(pc);
-		em.getTransaction().commit();
 		//em.close();
 
 	}
@@ -49,17 +50,14 @@ public class GerenciadorBD {
 		return null;
 	}*/
 
+	@TransacionalCdi
 	public void editar(Object o) {
-		em.getTransaction().begin();
 		em.merge(o);
-		em.getTransaction().commit();
-		//em.close();
+		//
 	}
 
 	public List list(Class classe) {
-		em.getTransaction().begin();
 		Query query = em.createQuery("from " + classe.getName());
-		em.getTransaction().commit();
 		//em.close();
 		return query.getResultList();
 	}

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 
-public class Peca {
+public class Peca implements Identificavel {
 	private String nome;
 	private String categoria;
 	private String marca;
@@ -13,7 +13,7 @@ public class Peca {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "peca_seq_gen")
 	@SequenceGenerator(name = "peca_seq_gen", sequenceName = "peca_id_seq")
 	@Id
-	private int id;	// categorias: ram, hd, video etc
+	private Long id;	// categorias: ram, hd, video etc
 
 	public Peca(String nome, String categoria, double preco) {
 		super();
@@ -51,14 +51,6 @@ public class Peca {
 		this.preco = preco;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getMarca() {
 		return marca;
 	}
@@ -75,6 +67,15 @@ public class Peca {
 		this.descricao = descricao;
 	}
 
-	
+	@Override
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public void setId(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 }
