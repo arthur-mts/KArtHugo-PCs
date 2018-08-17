@@ -6,10 +6,8 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-
 import dao.PecaDAO;
 import entities.Identificavel;
-
 
 @FacesConverter(value = "ConversorPeca")
 public class PecaConverter implements Converter {
@@ -23,8 +21,7 @@ public class PecaConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object object) {
-		return ((Identificavel)object).getId().toString();
+		return ((Identificavel) object).getId().toString();
 	}
-
 
 }
