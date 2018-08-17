@@ -15,6 +15,7 @@ import javax.swing.text.html.ImageView;
 import entities.MontagemDeComputador;
 import entities.Peca;
 import services.GerenciadorBD;
+import services.PcService;
 import services.PecaService;
 
 @ApplicationScoped
@@ -40,6 +41,7 @@ public class ComputadorBean implements Serializable {
 	private List<Peca> fontes = new ArrayList<Peca>();
 	private List<Peca> videos = new ArrayList<Peca>();
 	private PecaService pecaService;
+	private PcService pcService;
 
 	public List<MontagemDeComputador> getPcs() {
 		return pcs;
@@ -108,8 +110,12 @@ public class ComputadorBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		gbd = new GerenciadorBD();
-		pecas = gbd.list(Peca.class);
-		pcs = gbd.list(MontagemDeComputador.class);
+		pecaService = new PecaService();
+		pcService = new PcService();
+		//pecas = gbd.list(Peca.class);
+		pecas = pecaService.getAll();
+		pcs = pcService.getAll();
+		//pcs = gbd.list(MontagemDeComputador.class);
 		for (Peca p : pecas) {
 			if (p.getCategoria().equals("cpu")) {
 				cpus.add(p);
@@ -213,14 +219,17 @@ public class ComputadorBean implements Serializable {
 	}
 
 	public void removerPC() {
-		gbd.removerPC(pcBuscado);
-		pcs = gbd.list(MontagemDeComputador.class);
+		//gbd.removerPC(pcBuscado);
+		pcService.remove(pcBuscado);
+		//pcs = gbd.list(MontagemDeComputador.class);
+		pcs = pcService.getAll();
 		pcBuscado = new MontagemDeComputador();
 		setRenderPanelGridPcBuscado(false);
 	}
 
 	public void salvarEdicao() throws IOException {
-		gbd.editar(pcEditado);
+		//gbd.editar(pcEditado);
+		pcService.update(pcEditado);
 		setPcEditado(new MontagemDeComputador());
 		FacesContext.getCurrentInstance().getExternalContext().redirect("pcsMontados.xhtml");
 	}
@@ -239,7 +248,8 @@ public class ComputadorBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("PC " + pc.getNome() + "Criado", "O preco total foi de " + pc.getPrecoTotal()));
 		gbd.salvar(pc);
-		pcs = gbd.list(MontagemDeComputador.class);
+		//pcs = gbd.list(MontagemDeComputador.class);
+		pcs = pcService.getAll();
 		pc = new MontagemDeComputador();
 		setQntHd(0);
 		setQntRam(0);
@@ -277,6 +287,14 @@ public class ComputadorBean implements Serializable {
 
 	public void setPecaService(PecaService pecaService) {
 		this.pecaService = pecaService;
+	}
+
+	public PcService getPcService() {
+		return pcService;
+	}
+
+	public void setPcService(PcService pcService) {
+		this.pcService = pcService;
 	}
 
 }
