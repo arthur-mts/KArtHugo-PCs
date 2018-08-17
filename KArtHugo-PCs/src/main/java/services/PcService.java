@@ -5,24 +5,28 @@ import java.util.List;
 import javax.inject.Inject;
 import dao.PcDAO;
 import entities.MontagemDeComputador;
+import util.TransacionalCdi;
 
 public class PcService implements Serializable, services.Service<MontagemDeComputador> {
 	@Inject
 	private PcDAO dao;
 
 	@Override
+	@TransacionalCdi
 	public void save(MontagemDeComputador e) {
 		dao.save(e);
 
 	}
 
 	@Override
+	@TransacionalCdi
 	public void update(MontagemDeComputador e) {
 		dao.update(e);
 
 	}
 
 	@Override
+	@TransacionalCdi
 	public void remove(MontagemDeComputador e) {
 		dao.remove(e);
 

@@ -10,6 +10,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.swing.text.html.ImageView;
 
 import entities.MontagemDeComputador;
@@ -18,8 +21,8 @@ import services.GerenciadorBD;
 import services.PcService;
 import services.PecaService;
 
-@ApplicationScoped
-@ManagedBean(name = "computadorService")
+@ViewScoped
+@Named(value = "computadorService")
 public class ComputadorBean implements Serializable {
 	// Gerencia pecas
 	private List<MontagemDeComputador> pcs = new ArrayList<MontagemDeComputador>();
@@ -40,7 +43,11 @@ public class ComputadorBean implements Serializable {
 	private List<Peca> hds = new ArrayList<Peca>();
 	private List<Peca> fontes = new ArrayList<Peca>();
 	private List<Peca> videos = new ArrayList<Peca>();
+	
+	@Inject
 	private PecaService pecaService;
+	
+	@Inject
 	private PcService pcService;
 
 	public List<MontagemDeComputador> getPcs() {
@@ -110,8 +117,6 @@ public class ComputadorBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		gbd = new GerenciadorBD();
-		pecaService = new PecaService();
-		pcService = new PcService();
 		//pecas = gbd.list(Peca.class);
 		pecas = pecaService.getAll();
 		pcs = pcService.getAll();
@@ -230,6 +235,7 @@ public class ComputadorBean implements Serializable {
 	public void salvarEdicao() throws IOException {
 		//gbd.editar(pcEditado);
 		pcService.update(pcEditado);
+		pcs = pcService.getAll();
 		setPcEditado(new MontagemDeComputador());
 		FacesContext.getCurrentInstance().getExternalContext().redirect("pcsMontados.xhtml");
 	}
@@ -247,8 +253,9 @@ public class ComputadorBean implements Serializable {
 		pc.setPrecoTotal(precoTotal);
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("PC " + pc.getNome() + "Criado", "O preco total foi de " + pc.getPrecoTotal()));
-		gbd.salvar(pc);
+		//gbd.salvar(pc);
 		//pcs = gbd.list(MontagemDeComputador.class);
+		pcService.save(pc);
 		pcs = pcService.getAll();
 		pc = new MontagemDeComputador();
 		setQntHd(0);
