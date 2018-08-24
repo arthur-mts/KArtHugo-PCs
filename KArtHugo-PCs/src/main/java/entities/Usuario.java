@@ -16,6 +16,9 @@ public class Usuario implements Identificavel {
 	private Long id;
 	private String email;
 	private String nome;
+	private String grupo;
+	private String username;
+	private String password;
 	private Date nascimento;
 
 	public Date getNascimento() {
@@ -48,6 +51,30 @@ public class Usuario implements Identificavel {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
