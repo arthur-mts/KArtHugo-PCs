@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+# Configuração do JAAS e Data Source
+Repositório dos projetos utilizados como exemplo na disciplina de Desenvolvimento de Aplicações Web II no curso técnico integrado em informática do IFPB Campus Esperança.
 
-You can use the [editor on GitHub](https://github.com/punisher077/KArtHugo-PCs/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+1. NÃO implante a aplicação ainda antes de realizar todas essas configurações;
+2. Certifique-se que o Wildfly está executando;
+3. As configurações serão feitas via linha de comando. Para isso, acessem a pasta "<WILDFLY_HOME>\bin" e executem o seguinte comando:
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+jboss-cli.bat
 
-### Markdown
+4. Execute os seguintes comandos:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+connect
 
-```markdown
-Syntax highlighted code block
+module add --name=org.postgres --resources=C:\Users\Aluno\.m2\repository\org\postgresql\postgresql\9.4.1212\postgresql-9.4.1212.jar --dependencies=javax.api,javax.transaction.api
 
-# Header 1
-## Header 2
-### Header 3
+/subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres", driver-module-name="org.postgres", driver-class-name="org.postgresql.Driver")
 
-- Bulleted
-- List
+/subsystem=datasources/data-source=PostgreSQLPool:add(driver-name="postgres", jndi-name="java:/karthugoDS", connection-url="jdbc:postgresql://localhost:5432/CRUDPCs", user-name="postgres", password="postgres")
 
-1. Numbered
-2. List
+/subsystem=security/security-domain=ifotoJdbcRealm/:add(cache-type=default)
 
-**Bold** and _Italic_ and `Code` text
+/subsystem=security/security-domain=ifotoJdbcRealm/authentication=classic:add(login-modules=[{code=Database, flag=Required, module-options={ \
+    dsJndiName="java:/karthugoDS", \
+    principalsQuery="select password from usuario where username = ?", \
+    rolesQuery="select grupo, 'Roles' from usuario where username = ?", \
+    hashAlgorithm="SHA-256", \
+    hashEncoding="base64" \
+}}])
 
-[Link](url) and ![Image](src)
-```
+reload
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/punisher077/KArtHugo-PCs/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+quit
