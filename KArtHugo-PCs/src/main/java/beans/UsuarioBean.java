@@ -20,7 +20,6 @@ import entities.Usuario;
 import services.UserService;
 
 @ViewScoped
-@Named
 public class UsuarioBean implements Serializable {
 
 	@Inject

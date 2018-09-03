@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import services.PcService;
 import services.PecaService;
 
 @ViewScoped
+@ManagedBean
 public class ComputadorBean implements Serializable {
 	// Gerencia pecas
 	private List<MontagemDeComputador> pcs = new ArrayList<MontagemDeComputador>();
