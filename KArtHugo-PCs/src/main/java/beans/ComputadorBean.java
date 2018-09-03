@@ -18,7 +18,6 @@ import services.PcService;
 import services.PecaService;
 
 @ViewScoped
-@Named(value = "computadorService")
 public class ComputadorBean implements Serializable {
 	// Gerencia pecas
 	private List<MontagemDeComputador> pcs = new ArrayList<MontagemDeComputador>();
@@ -133,7 +132,7 @@ public class ComputadorBean implements Serializable {
 				hds.add(p);
 			}
 		}
-
+		
 		setRenderPanelGridPcBuscado(false);
 	}
 

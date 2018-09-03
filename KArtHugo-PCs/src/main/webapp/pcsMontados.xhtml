@@ -20,7 +20,7 @@
 
 		</p:tabMenu>
 
-		<p:carousel value="#{computadorService.pcs}"
+		<p:carousel value="#{computadorBean.pcs}"
 			headerText="Seus projetos de PC" var="pc"
 			itemStyle="text-align: center; color: grey" responsive="true">
 			<p:panelGrid columns="3" style="width:100%;margin:10px 0px"
@@ -38,8 +38,7 @@
 
 				<h:outputText value="Processador: " />
 				<h:outputText value="#{pc.cpu.marca} #{pc.cpu.nome}" />
-				<h:outputText
-					value="Quantidade: #{pc.quantCpu} x R$#{pc.cpu.preco}" />
+				<h:outputText value="Quantidade: #{pc.quantCpu} x R$#{pc.cpu.preco}" />
 
 				<h:outputText value="Fonte: " />
 				<h:outputText value="#{pc.fonte.marca} #{pc.fonte.nome}" />
@@ -48,8 +47,7 @@
 
 				<h:outputText value="RAM: " />
 				<h:outputText value="#{pc.ram.marca} #{pc.ram.nome}" />
-				<h:outputText
-					value="Quantidade: #{pc.quantRam} x R$#{pc.ram.preco}" />
+				<h:outputText value="Quantidade: #{pc.quantRam} x R$#{pc.ram.preco}" />
 
 				<h:outputText value="HD: " />
 				<h:outputText value="#{pc.hd.marca} #{pc.hd.nome}" />
@@ -67,59 +65,65 @@
 
 		<p:panelGrid columns="2" id="buscaPc">
 			<h:outputText value="Digite o id do seu PC:" />
-			<p:inputText value="#{computadorService.idPc}" id="idPcBuscado" />
+			<p:inputText value="#{computadorBean.idPc}" id="idPcBuscado" />
 		</p:panelGrid>
 		<p:commandButton value="Buscar PC" update="growl: form"
-			action="#{computadorService.buscarPC()}" />
+			action="#{computadorBean.buscarPC()}" />
 
 		<p:panelGrid columns="3" style="width:100%;margin:10px 0px"
 			layout="grid" columnClasses="label,value,value"
-			rendered="#{computadorService.renderPanelGridPcBuscado}">
+			rendered="#{computadorBean.renderPanelGridPcBuscado}">
 
 			<f:facet name="header">
 				<p:outputLabel style="font-weight: bold;"
-					value="PC Buscado: #{computadorService.pcBuscado.nome}" />
+					value="PC Buscado: #{computadorBean.pcBuscado.nome}" />
 			</f:facet>
 
 			<h:outputText value="Placa Mãe: " />
-			<h:outputText value="#{computadorService.pcBuscado.placaMae.marca} #{computadorService.pcBuscado.placaMae.nome}" />
 			<h:outputText
-				value="Quantidade: #{computadorService.pcBuscado.quantPlaM} x R$#{computadorService.pcBuscado.placaMae.preco}" />
+				value="#{computadorBean.pcBuscado.placaMae.marca} #{computadorBean.pcBuscado.placaMae.nome}" />
+			<h:outputText
+				value="Quantidade: #{computadorBean.pcBuscado.quantPlaM} x R$#{computadorBean.pcBuscado.placaMae.preco}" />
 
 			<h:outputText value="Processador: " />
-			<h:outputText value="#{computadorService.pcBuscado.cpu.marca} #{computadorService.pcBuscado.cpu.nome}" />
 			<h:outputText
-				value="Quantidade: #{computadorService.pcBuscado.quantCpu} x R$#{computadorService.pcBuscado.cpu.preco}" />
+				value="#{computadorBean.pcBuscado.cpu.marca} #{computadorBean.pcBuscado.cpu.nome}" />
+			<h:outputText
+				value="Quantidade: #{computadorBean.pcBuscado.quantCpu} x R$#{computadorBean.pcBuscado.cpu.preco}" />
 
 			<h:outputText value="Fonte: " />
-			<h:outputText value="#{computadorService.pcBuscado.fonte.marca} #{computadorService.pcBuscado.fonte.nome}" />
 			<h:outputText
-				value="Quantidade: #{computadorService.pcBuscado.quantFonte} x R$#{computadorService.pcBuscado.fonte.preco}" />
+				value="#{computadorBean.pcBuscado.fonte.marca} #{computadorBean.pcBuscado.fonte.nome}" />
+			<h:outputText
+				value="Quantidade: #{computadorBean.pcBuscado.quantFonte} x R$#{computadorBean.pcBuscado.fonte.preco}" />
 
 			<h:outputText value="RAM: " />
-			<h:outputText value="#{computadorService.pcBuscado.ram.marca} #{computadorService.pcBuscado.ram.nome}" />
 			<h:outputText
-				value="Quantidade: #{computadorService.pcBuscado.quantRam} x R$#{computadorService.pcBuscado.ram.preco}" />
+				value="#{computadorBean.pcBuscado.ram.marca} #{computadorBean.pcBuscado.ram.nome}" />
+			<h:outputText
+				value="Quantidade: #{computadorBean.pcBuscado.quantRam} x R$#{computadorBean.pcBuscado.ram.preco}" />
 
 			<h:outputText value="HD: " />
-			<h:outputText value="#{computadorService.pcBuscado.hd.marca} #{computadorService.pcBuscado.hd.nome}" />
 			<h:outputText
-				value="Quantidade: #{computadorService.pcBuscado.quantHd} x R$#{computadorService.pcBuscado.hd.preco}" />
+				value="#{computadorBean.pcBuscado.hd.marca} #{computadorBean.pcBuscado.hd.nome}" />
+			<h:outputText
+				value="Quantidade: #{computadorBean.pcBuscado.quantHd} x R$#{computadorBean.pcBuscado.hd.preco}" />
 
 			<h:outputText value="Placa de Video: " />
-			<h:outputText value="#{computadorService.pcBuscado.video.marca} #{computadorService.pcBuscado.video.nome}" />
 			<h:outputText
-				value="Quantidade: #{computadorService.pcBuscado.quantVideo} x R$#{computadorService.pcBuscado.video.preco}" />
+				value="#{computadorBean.pcBuscado.video.marca} #{computadorBean.pcBuscado.video.nome}" />
+			<h:outputText
+				value="Quantidade: #{computadorBean.pcBuscado.quantVideo} x R$#{computadorBean.pcBuscado.video.preco}" />
 
 			<h:outputText value="Preço total: " />
-			<h:outputText value="R$#{computadorService.pcBuscado.precoTotal}" />
+			<h:outputText value="R$#{computadorBean.pcBuscado.precoTotal}" />
 
 
 			<p:column>
 				<p:commandButton value="Editar PC" id="editarPcBuscado"
-					update="growl: form" action="#{computadorService.editarPC()}" />
-				<p:commandButton value="Remover PC" id="removerPcBuscado" action="#{computadorService.removerPC()}"
-					update="growl: form" />
+					update="growl: form" action="#{computadorBean.editarPC()}" />
+				<p:commandButton value="Remover PC" id="removerPcBuscado"
+					action="#{computadorBean.removerPC()}" update="growl: form" />
 			</p:column>
 		</p:panelGrid>
 

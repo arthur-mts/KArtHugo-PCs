@@ -10,7 +10,6 @@ import entities.Peca;
 
 @ManagedBean(name="pecasBean")
 @ApplicationScoped
-
 public class PecasBean implements Serializable {
 	private List<Peca> pecas = new ArrayList<Peca>();
 	private Peca peca = new Peca();
