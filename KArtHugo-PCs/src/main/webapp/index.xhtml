@@ -10,19 +10,33 @@
 </h:head>
 
 <h:body>
-	<h:form>
+	<h:form prependId="false" id="formLogin" onsubmit="action='j_security_check';">
 		<p:messages>
 		</p:messages>
 		<p:tabMenu>
 			<p:menuitem icon="ui-icon-disk" value="PCs Montados"
-				url="pcsMontados.xhtml" />
+				url="private/pcsMontados.xhtml" />
 			<p:menuitem icon="ui-icon-disk" value="Monte seu PC"
-				url="createPc.xhtml" />
+				url="private/createPc.xhtml" />
 		</p:tabMenu>
+		<p:panel header="Login">
+			<p:panelGrid rendered="true" columns="2">
+
+				<p:outputLabel for="username" value="Usuario: " />
+				<p:inputText id="username" required="true" label="username" />
+
+				<p:outputLabel for="username" value="Senha: " />
+				<p:password id="password" required="true" label="password" />
+			</p:panelGrid>
+			<p:commandButton value="Entrar" icon="fa fa-sign-in" ajax="false"/>
+		</p:panel>
+
+
 	</h:form>
-	<marquee scrollamount="40">
+	<!-- <marquee scrollamount="40">
 		<h1 style="font-size: 100px; color: blue; text-align: left;">Monta ai comedia</h1>
 		<h:graphicImage url="/images/pc.jpg"/>
-	</marquee>
+	</marquee> -->
+
 </h:body>
 </html>

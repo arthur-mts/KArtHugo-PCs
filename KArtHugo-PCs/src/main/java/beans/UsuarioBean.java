@@ -36,6 +36,7 @@ public class UsuarioBean implements Serializable {
 	public void init() {
 		entidade = newEntidade();
 		entidades = getService().getAll();
+		entidades.add(new Usuario());
 	}
 	
 	public String getUserLogin() {
