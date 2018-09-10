@@ -19,15 +19,8 @@ public class Usuario implements Identificavel {
 	private String grupo;
 	private String username;
 	private String password;
-	private Date nascimento;
 
-	public Date getNascimento() {
-		return nascimento;
-	}
-
-	public void setNascimento(Date nascimento) {
-		this.nascimento = nascimento;
-	}
+	
 
 	public Long getId() {
 		return id;
@@ -76,5 +69,6 @@ public class Usuario implements Identificavel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 }

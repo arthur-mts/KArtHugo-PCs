@@ -5,11 +5,24 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
-<h:head>
-	<title>KArtHugo PCs</title>
-</h:head>
+<h:form>
+	<h:head>
+		<title>KArtHugo PCs</title>
+	</h:head>
+	<marquee scrollamount="40">
+		<h1 style="font-size: 100px; color: blue; text-align: left;">Monta
+			ai comedia</h1>
+		<h:graphicImage url="/images/pc.jpg" />
+	</marquee>
+	<h:body>
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Nome completo: " />
+			<p:inputText id="nome" value="#{usuarioBean.entidade.nome}" required="true"/>
+			
+			<p:outputLabel value="Email: " for="email"/>
+			<p:inputText id="nome" value="#{usuarioBean.entidade.email}" required="true"/>
+		</p:panelGrid>
 
-<h:body>
-	
-</h:body>
+	</h:body>
+</h:form>
 </html>
