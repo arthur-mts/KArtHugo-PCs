@@ -19,7 +19,7 @@ module add --name=org.postgres --resources=C:\Users\Aluno\.m2\repository\org\pos
 
 /subsystem=security/security-domain=ifotoJdbcRealm/:add(cache-type=default)
 
-/subsystem=security/security-domain=ifotoJdbcRealm/authentication=classic:add(login-modules=[{code=Database, flag=Required, module-options={ \
+/subsystem=security/security-domain=karthugoJdbcRealm/authentication=classic:add(login-modules=[{code=Database, flag=Required, module-options={ \
     dsJndiName="java:/karthugoDS", \
     principalsQuery="select password from usuario where username = ?", \
     rolesQuery="select grupo, 'Roles' from usuario where username = ?", \
