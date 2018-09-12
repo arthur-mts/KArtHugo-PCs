@@ -123,7 +123,7 @@
 				<p:commandButton value="Editar PC" id="editarPcBuscado"
 					update="growl: form" action="#{computadorBean.editarPC()}" />
 				<p:commandButton value="Remover PC" id="removerPcBuscado"
-					action="#{computadorBean.removerPC()}" update="growl: form" />
+					action="#{computadorBean.removerPC()}" ajax="false" update="growl: form" />
 			</p:column>
 		</p:panelGrid>
 

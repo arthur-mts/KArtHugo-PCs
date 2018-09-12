@@ -19,7 +19,7 @@ import services.PcService;
 import services.PecaService;
 
 @ViewScoped
-@ManagedBean
+@Named
 public class ComputadorBean implements Serializable {
 	// Gerencia pecas
 	private List<MontagemDeComputador> pcs = new ArrayList<MontagemDeComputador>();
