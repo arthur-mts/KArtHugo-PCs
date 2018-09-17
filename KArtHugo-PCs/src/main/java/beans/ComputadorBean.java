@@ -40,7 +40,61 @@ public class ComputadorBean implements Serializable {
 	private List<Peca> hds = new ArrayList<Peca>();
 	private List<Peca> fontes = new ArrayList<Peca>();
 	private List<Peca> videos = new ArrayList<Peca>();
+	private Long idPlacaMaeEdit;
+	private Long idRamEdit;
+	private Long idVideoEdit;
+	private Long idFonteEdit;
+	private Long idCpuEdit;
+	private Long idHdEdit;
 	
+	public Long getIdPlacaMaeEdit() {
+		return idPlacaMaeEdit;
+	}
+
+	public void setIdPlacaMaeEdit(Long idPlacaMaeEdit) {
+		this.idPlacaMaeEdit = idPlacaMaeEdit;
+	}
+
+	public Long getIdRamEdit() {
+		return idRamEdit;
+	}
+
+	public void setIdRamEdit(Long idRamEdit) {
+		this.idRamEdit = idRamEdit;
+	}
+
+	public Long getIdVideoEdit() {
+		return idVideoEdit;
+	}
+
+	public void setIdVideoEdit(Long idVideoEdit) {
+		this.idVideoEdit = idVideoEdit;
+	}
+
+	public Long getIdFonteEdit() {
+		return idFonteEdit;
+	}
+
+	public void setIdFonteEdit(Long idFonteEdit) {
+		this.idFonteEdit = idFonteEdit;
+	}
+
+	public Long getIdCpuEdit() {
+		return idCpuEdit;
+	}
+
+	public void setIdCpuEdit(Long idCpuEdit) {
+		this.idCpuEdit = idCpuEdit;
+	}
+
+	public Long getIdHdEdit() {
+		return idHdEdit;
+	}
+
+	public void setIdHdEdit(Long idHdEdit) {
+		this.idHdEdit = idHdEdit;
+	}
+
 	@Inject
 	private PecaService pecaService;
 	
@@ -196,8 +250,8 @@ public class ComputadorBean implements Serializable {
 	}
 
 	public void editarPC() throws IOException {
-		setPcEditado(getPcBuscado());
 		// gbd.iniciarEdicaorPC(pcBuscado);
+		setPcEditado(pcBuscado);
 		setPcBuscado(new MontagemDeComputador());
 		setRenderPanelGridPcBuscado(false);
 		FacesContext.getCurrentInstance().getExternalContext().redirect("editarPc.xhtml");
