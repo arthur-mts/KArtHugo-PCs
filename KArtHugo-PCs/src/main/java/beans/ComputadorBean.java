@@ -231,6 +231,7 @@ public class ComputadorBean implements Serializable {
 
 	public void salvarEdicao() throws IOException {
 		//gbd.editar(pcEditado);
+		//precisa revisar
 		pcEditado.setCpu(pecaService.getByID(pcEditado.getCpu().getId()));
 		pcEditado.setFonte(pecaService.getByID(pcEditado.getFonte().getId()));
 		pcEditado.setHd(pecaService.getByID(pcEditado.getHd().getId()));
