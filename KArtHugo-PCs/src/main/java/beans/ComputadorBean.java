@@ -24,7 +24,7 @@ public class ComputadorBean implements Serializable {
 	// Gerencia pecas
 	private List<MontagemDeComputador> pcs = new ArrayList<MontagemDeComputador>();
 	private MontagemDeComputador pcBuscado = new MontagemDeComputador();
-	private MontagemDeComputador pcEditado;
+	private MontagemDeComputador pcEditado = new MontagemDeComputador();
 	private MontagemDeComputador pc = new MontagemDeComputador();
 	private int idPc;
 	private GerenciadorBD gbd;
@@ -231,6 +231,11 @@ public class ComputadorBean implements Serializable {
 
 	public void salvarEdicao() throws IOException {
 		//gbd.editar(pcEditado);
+		pcEditado.setCpu(pecaService.getByID(pcEditado.getCpu().getId()));
+		pcEditado.setFonte(pecaService.getByID(pcEditado.getFonte().getId()));
+		pcEditado.setHd(pecaService.getByID(pcEditado.getHd().getId()));
+		pcEditado.setVideo(pecaService.getByID(pcEditado.getVideo().getId()));
+		pcEditado.setRam(pecaService.getByID(pcEditado.getRam().getId()));
 		pcService.update(pcEditado);
 		pcs = pcService.getAll();
 		setPcEditado(new MontagemDeComputador());
@@ -238,6 +243,12 @@ public class ComputadorBean implements Serializable {
 	}
 
 	public void salvarPc() {
+		pc.setPlacaMae(pecaService.getByID(pc.getPlacaMae().getId()));
+		pc.setCpu(pecaService.getByID(pc.getPlacaMae().getId()));
+		pc.setRam(pecaService.getByID(pc.getRam().getId()));
+		pc.setVideo(pecaService.getByID(pc.getVideo().getId()));
+		pc.setFonte(pecaService.getByID(pc.getFonte().getId()));
+		pc.setHd(pecaService.getByID(pc.getHd().getId()));
 		pc.setQuantRam(getQntRam());
 		pc.setQuantHd(getQntHd());
 		pc.setQuantVideo(getQntVideo());

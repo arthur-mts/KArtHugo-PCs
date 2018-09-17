@@ -102,6 +102,12 @@ public class MontagemDeComputador implements Identificavel{
 
 	public MontagemDeComputador() {
 		super();
+		setPlacaMae(new Peca());
+		setCpu(new Peca());
+		setFonte(new Peca());
+		setRam(new Peca());
+		setVideo(new Peca());
+		setHd(new Peca());
 	}
 
 	public Peca getPlacaMae() {
