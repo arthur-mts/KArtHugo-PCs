@@ -1,24 +1,23 @@
 package beans;
 
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import entities.MontagemDeComputador;
 import entities.Peca;
 import services.GerenciadorBD;
 import services.PcService;
 import services.PecaService;
 
-@ViewScoped
+@SessionScoped
 @Named
 public class ComputadorBean implements Serializable {
 	// Gerencia pecas
@@ -46,7 +45,7 @@ public class ComputadorBean implements Serializable {
 	private Long idFonteEdit;
 	private Long idCpuEdit;
 	private Long idHdEdit;
-	
+
 	public Long getIdPlacaMaeEdit() {
 		return idPlacaMaeEdit;
 	}
@@ -97,7 +96,7 @@ public class ComputadorBean implements Serializable {
 
 	@Inject
 	private PecaService pecaService;
-	
+
 	@Inject
 	private PcService pcService;
 
@@ -168,10 +167,8 @@ public class ComputadorBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		gbd = new GerenciadorBD();
-		//pecas = gbd.list(Peca.class);
 		pecas = pecaService.getAll();
 		pcs = pcService.getAll();
-		//pcs = gbd.list(MontagemDeComputador.class);
 		for (Peca p : pecas) {
 			if (p.getCategoria().equals("cpu")) {
 				cpus.add(p);
@@ -188,11 +185,10 @@ public class ComputadorBean implements Serializable {
 				hds.add(p);
 			}
 		}
-		
+
 		setRenderPanelGridPcBuscado(false);
 	}
 
-	
 	public List<Peca> getPecas() {
 		return pecas;
 	}
@@ -264,28 +260,25 @@ public class ComputadorBean implements Serializable {
 				setPcBuscado(buscaPC);
 				encontrado = true;
 				setRenderPanelGridPcBuscado(true);
-				setIdPc(0);
 			}
 		}
 		if (!encontrado) {
 			FacesContext.getCurrentInstance().addMessage("ERROR",
-					new FacesMessage("PC com id " + getIdPc() + " nao foi encontrado"));
+					new FacesMessage("PC com id " + getIdPc() + " nao foi encontrado!"));
 			setRenderPanelGridPcBuscado(false);
 		}
 	}
 
 	public void removerPC() {
-		//gbd.removerPC(pcBuscado);
+		// gbd.removerPC(pcBuscado);
 		pcService.remove(pcBuscado);
-		//pcs = gbd.list(MontagemDeComputador.class);
+		// pcs = gbd.list(MontagemDeComputador.class);
 		pcs = pcService.getAll();
 		pcBuscado = new MontagemDeComputador();
 		setRenderPanelGridPcBuscado(false);
 	}
 
 	public void salvarEdicao() throws IOException {
-		//gbd.editar(pcEditado);
-		//precisa revisar
 		pcEditado.setCpu(pecaService.getByID(pcEditado.getCpu().getId()));
 		pcEditado.setFonte(pecaService.getByID(pcEditado.getFonte().getId()));
 		pcEditado.setHd(pecaService.getByID(pcEditado.getHd().getId()));
@@ -316,8 +309,8 @@ public class ComputadorBean implements Serializable {
 		pc.setPrecoTotal(precoTotal);
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("PC " + pc.getNome() + "Criado", "O preco total foi de " + pc.getPrecoTotal()));
-		//gbd.salvar(pc);
-		//pcs = gbd.list(MontagemDeComputador.class);
+		// gbd.salvar(pc);
+		// pcs = gbd.list(MontagemDeComputador.class);
 		pcService.save(pc);
 		pcs = pcService.getAll();
 		pc = new MontagemDeComputador();
