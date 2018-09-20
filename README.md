@@ -11,13 +11,17 @@ jboss-cli.bat
 
 connect
 
+No Windows:
 module add --name=org.postgres --resources=C:\Users\Aluno\.m2\repository\org\postgresql\postgresql\9.4.1212\postgresql-9.4.1212.jar --dependencies=javax.api,javax.transaction.api
+Ou no Linux:
+module add --name=org.postgres --resources=/home/arthurmts/.m2/repository/org/postgresql/postgresql/9.4.1212/postgresql-9.4.1212.jar --dependencies=javax.api,javax.transaction.api
+
 
 /subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres", driver-module-name="org.postgres", driver-class-name="org.postgresql.Driver")
 
 /subsystem=datasources/data-source=PostgreSQLPool:add(driver-name="postgres", jndi-name="java:/karthugoDS", connection-url="jdbc:postgresql://localhost:5432/CRUDPCs", user-name="postgres", password="postgres")
 
-/subsystem=security/security-domain=ifotoJdbcRealm/:add(cache-type=default)
+/subsystem=security/security-domain=karthugoJdbcRealm/:add(cache-type=default)
 
 /subsystem=security/security-domain=karthugoJdbcRealm/authentication=classic:add(login-modules=[{code=Database, flag=Required, module-options={ \
     dsJndiName="java:/karthugoDS", \
