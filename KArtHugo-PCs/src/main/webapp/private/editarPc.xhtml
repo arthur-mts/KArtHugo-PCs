@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+	<title>KArtHugo PCs</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<p:tabMenu>
+			<p:menuitem icon="ui-icon-disk" value="PCs Montados"
+				url="pcsMontados.xhtml" />
+			<p:menuitem icon="ui-icon-disk" value="Monte seu PC"
+				url="createPc.xhtml" />
+		</p:tabMenu>
+
+
+		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">
+			<p:outputLabel value="Nome do PC:" />
+			<p:inputText  id="nomePc" label="nome"
+				value="#{computadorBean.pcEditado.nome}"  style="width:350px" />
+
+			<p:outputLabel value="Placa mãe:" />
+			<p:selectOneMenu id="placaMae" style="width:350px"
+				value="#{computadorBean.pcEditado.placaMae.id}">
+				<f:selectItems value="#{computadorBean.placas}" var="placaMaeE"
+					itemLabel="#{placaMaeE.marca} #{placaMaeE.nome}: R$#{placaMaeE.preco}" itemValue="#{placaMaeE.id}" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Processador:" />
+			<p:selectOneMenu id="cpu" panelStyle="width:350px"
+				style="width:350px" value="#{computadorBean.pcEditado.cpu.id}">
+				<f:selectItems value="#{computadorBean.cpus}" var="cpuE"
+					itemLabel="#{cpuE.marca} #{cpuE.nome}: R$#{cpuE.preco}" itemValue="#{cpuE.id}" />
+			</p:selectOneMenu>
+
+
+
+			<p:outputLabel value="Fonte:" />
+			<p:selectOneMenu id="fonte" panelStyle="width:350px"
+				style="width:350px" value="#{computadorBean.pcEditado.fonte.id}">
+				<f:selectItems value="#{computadorBean.fontes}" var="fonteE"
+					itemLabel="#{fonteE.marca} #{fonteE.nome}: R$#{fonteE.preco}"
+					itemValue="#{fonteE.id}" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+		<p:panelGrid style="margin-botton:20px" columns="4" layout="grid">
+
+			<p:outputLabel value="Memorias RAM:" />
+			<p:selectOneMenu id="ram" panelStyle="width:350px"
+				style="width:350px" value="#{computadorBean.pcEditado.ram.id}">
+				<f:selectItems value="#{computadorBean.rams}" var="ramE"
+					itemLabel="#{ramE.marca} #{ramE.nome}: R$#{ramE.preco}"
+					itemValue="#{ramE.id}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Quantidade: " />
+			<p:spinner id="qntRam" style="width:300px" min="1" max="6"
+				value="#{computadorBean.pcEditado.quantRam}" />
+
+			<p:outputLabel value="Memoria Fisica (HD):" />
+			<p:selectOneMenu id="hd" panelStyle="width:350px" style="width:350px"
+				value="#{computadorBean.pcEditado.hd.id}">
+				<f:selectItems value="#{computadorBean.hds}" var="hdE"
+					itemLabel="#{hdE.nome}" itemValue="#{hdE.id}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Quantidade: " />
+			<p:spinner id="qntHd" style="width:300px" min="1" max="6"
+				value="#{computadorBean.pcEditado.quantHd}" />
+
+			<p:outputLabel value="Placa de Video:" />
+			<p:selectOneMenu id="video" panelStyle="width:350px"
+				style="width:350px" value="#{computadorBean.pcEditado.video.id}">
+				<f:selectItems value="#{computadorBean.videos}" var="videoE"
+					itemLabel="#{videoE.nome}" itemValue="#{videoE.id}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Quantidade: " />
+			<p:spinner id="qntVideo" style="width:300px" min="1" max="6"
+				value="#{computadorBean.pcEditado.quantVideo}" />
+
+		</p:panelGrid>
+
+		<p:commandButton value="Salvar Edição"
+			action="#{computadorBean.salvarEdicao()}" />
+
+	</h:form>
+</h:body>
+</html>

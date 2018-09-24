@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import entities.Peca;
 
-@ManagedBean(name="pecasBean")
-@ApplicationScoped
-
+/*@ManagedBean(name="pecasBean")
+@ApplicationScoped*/
+@ViewScoped
 public class PecasBean implements Serializable {
 	private List<Peca> pecas = new ArrayList<Peca>();
 	private Peca peca = new Peca();

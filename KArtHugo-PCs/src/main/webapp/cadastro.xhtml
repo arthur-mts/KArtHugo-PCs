@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:form id="cadastro">
+	<p:growl id="growl" showDetail="true" sticky="true" />
+	<h:head>
+		<title>KArtHugo PCs</title>
+	</h:head>
+	<!-- <marquee scrollamount="40">
+		<h1 style="font-size: 100px; color: blue; text-align: left;">Monta
+			ai comedia</h1>
+		<h:graphicImage url="/images/pc.jpg" />
+	</marquee> -->
+	<h:body>
+		<p:panel header="Cadastro">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Nome completo: " for="nome" />
+				<p:inputText value="#{usuarioBean.entidade.nome}" id="nome"
+					required="true" />
+
+				<p:outputLabel value="Email: " for="email" />
+				<p:inputText value="#{usuarioBean.entidade.email}" id="email"
+					required="true" />
+
+				<p:outputLabel value="Senha: " />
+				<p:password required="true" feedback="true"
+					value="usuarioBean.entidade.password" />
+
+				<p:outputLabel value="Confirme a senha: " />
+				<p:password required="true" value="usuarioBean.autPassword" />
+
+				<p:column>
+					<p:commandButton value="Salvar cadastro" id="btnCadastro"
+						action="usuarioBean.cadastro()" update="growl" />
+				</p:column>
+			</p:panelGrid>
+		</p:panel>
+
+	</h:body>
+</h:form>
+</html>

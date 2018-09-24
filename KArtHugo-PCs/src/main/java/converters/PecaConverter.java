@@ -21,7 +21,13 @@ public class PecaConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object object) {
-		return ((Identificavel) object).getId().toString();
+		try {
+		Identificavel identificavel = (Identificavel) object;
+		Long id = identificavel.getId();
+		return id.toString();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }
