@@ -6,6 +6,7 @@ import java.security.Principal;
 import java.util.Collection;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -15,30 +16,49 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
 import entities.Usuario;
 import services.UserService;
 
 @ViewScoped
+@Named
 public class UsuarioBean implements Serializable {
 
 	@Inject
 	private UserService service;
 
-	protected Usuario entidade;
+	private String autPassword;
+
+	private Usuario entidade;
 
 	protected Collection<Usuario> entidades;
 
 	public UsuarioBean() {
 	}
-	
+
 	@PostConstruct
 	public void init() {
 		entidade = newEntidade();
 		entidades = getService().getAll();
 		entidades.add(new Usuario());
 	}
-	
+
+	public void cadastro() {
+		boolean pass = false;
+		if (!entidade.getPassword().equals(autPassword)) {
+			FacesContext.getCurrentInstance().addMessage("ERROR", new FacesMessage("Confira sua senha!"));
+		}
+		else {
+			pass = true;
+		}
+		for (Usuario u : entidades) {
+			if (entidade.getEmail().equals(u.getEmail())) {
+				FacesContext.getCurrentInstance().addMessage("ERROR", new FacesMessage("Email já cadastrado"));
+			}
+		}
+		
+
+	}
+
 	public String getUserLogin() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
@@ -48,7 +68,7 @@ public class UsuarioBean implements Serializable {
 		}
 		return userPrincipal.getName();
 	}
-	
+
 	public void efetuarLogout() throws IOException, ServletException {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
@@ -58,7 +78,7 @@ public class UsuarioBean implements Serializable {
 		request.logout();
 		ec.redirect(ec.getApplicationContextPath());
 	}
-	
+
 	public boolean isUserInRole(String role) {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
@@ -107,6 +127,14 @@ public class UsuarioBean implements Serializable {
 
 	public UserService getService() {
 		return service;
+	}
+
+	public String getAutPassword() {
+		return autPassword;
+	}
+
+	public void setAutPassword(String autPassword) {
+		this.autPassword = autPassword;
 	}
 
 }

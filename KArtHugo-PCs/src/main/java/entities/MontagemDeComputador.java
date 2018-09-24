@@ -10,7 +10,9 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class MontagemDeComputador implements Identificavel{
-
+	@ManyToOne
+	@JoinColumn(name = "id_usu_pc")
+	private Usuario usuario;
 	@ManyToOne
 	@JoinColumn(name = "id_cpu_pc")
 	private Peca cpu;
@@ -175,5 +177,13 @@ public class MontagemDeComputador implements Identificavel{
 	public void setId(Long id) {
 		this.id = id;
 		
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

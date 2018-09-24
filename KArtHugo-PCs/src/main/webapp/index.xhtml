@@ -10,7 +10,9 @@
 </h:head>
 
 <h:body>
-	<h:form prependId="false" id="formLogin" onsubmit="action='j_security_check';">
+	<h:form prependId="false" id="formLogin"
+		onsubmit="action='j_security_check';">
+		<p:growl id="growl" showDetail="true" sticky="true" />
 		<p:messages>
 		</p:messages>
 		<p:tabMenu>
@@ -28,10 +30,10 @@
 				<p:outputLabel for="username" value="Senha: " />
 				<p:password id="password" required="true" label="password" />
 			</p:panelGrid>
-			<p:commandButton value="Entrar" icon="fa fa-sign-in" ajax="false"/>
+			<p:commandButton value="Entrar" icon="fa fa-sign-in" ajax="false" />
 		</p:panel>
-		<p:link value="Cadastre-se" href="cadastro.xhtml"/>
-		
+		<p:link value="Cadastre-se" href="cadastro.xhtml" />
+
 
 
 	</h:form>
