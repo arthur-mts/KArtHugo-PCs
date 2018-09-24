@@ -13,6 +13,7 @@
 
 		<class>entities.MontagemDeComputador</class>
 		<class>entities.Peca</class>
+		<class>entities.Usuario</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:postgresql://localhost:5432/CRUDPCs" />

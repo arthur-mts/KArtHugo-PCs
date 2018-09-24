@@ -19,23 +19,28 @@
 		<p:panel header="Cadastro">
 			<p:panelGrid columns="2">
 				<p:outputLabel value="Nome completo: " for="nome" />
-				<p:inputText value="#{usuarioBean.entidade.nome}" id="nome"
-					required="true" />
+				<p:inputText value="#{usuarioBean.entidade.nome}" required="true"
+					id="nome" />
+					
+				<p:outputLabel value="Username: " for="nick" />
+				<p:inputText value="#{usuarioBean.entidade.username}" required="true"
+					id="nick" />
 
 				<p:outputLabel value="Email: " for="email" />
 				<p:inputText value="#{usuarioBean.entidade.email}" id="email"
 					required="true" />
 
-				<p:outputLabel value="Senha: " />
+				<p:outputLabel value="Senha: " for="password" />
 				<p:password required="true" feedback="true"
-					value="usuarioBean.entidade.password" />
+					value="#{usuarioBean.entidade.password}" id="password" />
 
-				<p:outputLabel value="Confirme a senha: " />
-				<p:password required="true" value="usuarioBean.autPassword" />
+				<p:outputLabel value="Confirme a senha: " for="autPass" />
+				<p:password required="true" id="autPass"
+					value="#{usuarioBean.autPassword}" />
 
 				<p:column>
 					<p:commandButton value="Salvar cadastro" id="btnCadastro"
-						action="usuarioBean.cadastro()" update="growl" />
+						action="#{usuarioBean.cadastro()}" update="growl" />
 				</p:column>
 			</p:panelGrid>
 		</p:panel>

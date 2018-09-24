@@ -24,15 +24,15 @@
 		<auth-method>FORM</auth-method>
 		<realm-name>karthugoJdbcRealm</realm-name>
 		<form-login-config>
-			<form-login-page>/src/webapp/index.xhtml</form-login-page>
-			<form-error-page>/src/webapp/index.xhtml?error=true</form-error-page>
+			<form-login-page>/index.xhtml</form-login-page>
+			<form-error-page>/index.xhtml?error=true</form-error-page>
 		</form-login-config>
 	</login-config>
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Área protegida</web-resource-name>
 			<description />
-			<url-pattern>/src/webapp/private*</url-pattern>
+			<url-pattern>/private*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description />

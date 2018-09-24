@@ -19,7 +19,9 @@ public class Usuario implements Identificavel {
 	private String username;
 	private String password;
 
-	
+	public Usuario() {
+		super();
+	}
 
 	public Long getId() {
 		return id;
@@ -68,6 +70,5 @@ public class Usuario implements Identificavel {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 }

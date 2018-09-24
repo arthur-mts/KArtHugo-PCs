@@ -46,17 +46,25 @@ public class UsuarioBean implements Serializable {
 		boolean pass = false;
 		if (!entidade.getPassword().equals(autPassword)) {
 			FacesContext.getCurrentInstance().addMessage("ERROR", new FacesMessage("Confira sua senha!"));
-		}
-		else {
+		} else {
 			pass = true;
 		}
+		boolean unique = false;
 		for (Usuario u : entidades) {
 			if (entidade.getEmail().equals(u.getEmail())) {
 				FacesContext.getCurrentInstance().addMessage("ERROR", new FacesMessage("Email já cadastrado"));
+			} else {
+				unique = true;
 			}
 		}
-		
-
+		if (pass && unique) {
+			entidade.setPassword(service.hash(entidade.getPassword()));
+			entidade.setGrupo("OUTROS");
+			service.save(entidade);
+			entidades = service.getAll();
+			FacesContext.getCurrentInstance().addMessage("Sucesso!",
+					new FacesMessage("Conta cadastrada: " + entidade.getUsername()));
+		}
 	}
 
 	public String getUserLogin() {

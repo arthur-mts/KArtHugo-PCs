@@ -37,7 +37,7 @@ public class UserService implements Serializable, Service<Usuario> {
 		userDAO.save(user);
 	}
 
-	private String hash(String password) {
+	public String hash(String password) {
 		try {
 			MessageDigest md;
 			md = MessageDigest.getInstance("SHA-256");
