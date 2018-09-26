@@ -17,26 +17,30 @@
 				url="pcsMontados.xhtml" />
 			<p:menuitem icon="ui-icon-disk" value="Monte seu PC"
 				url="createPc.xhtml" />
+			<p:menuitem value="Home" url="/index.xhtml" />
+
 		</p:tabMenu>
 
 
 		<p:panelGrid style="margin-botton:20px" columns="2" layout="grid">
 			<p:outputLabel value="Nome do PC:" />
-			<p:inputText  id="nomePc" label="nome"
-				value="#{computadorBean.pcEditado.nome}"  style="width:350px" />
+			<p:inputText id="nomePc" label="nome"
+				value="#{computadorBean.pcEditado.nome}" style="width:350px" />
 
 			<p:outputLabel value="Placa mãe:" />
 			<p:selectOneMenu id="placaMae" style="width:350px"
 				value="#{computadorBean.pcEditado.placaMae.id}">
 				<f:selectItems value="#{computadorBean.placas}" var="placaMaeE"
-					itemLabel="#{placaMaeE.marca} #{placaMaeE.nome}: R$#{placaMaeE.preco}" itemValue="#{placaMaeE.id}" />
+					itemLabel="#{placaMaeE.marca} #{placaMaeE.nome}: R$#{placaMaeE.preco}"
+					itemValue="#{placaMaeE.id}" />
 			</p:selectOneMenu>
 
 			<p:outputLabel value="Processador:" />
 			<p:selectOneMenu id="cpu" panelStyle="width:350px"
 				style="width:350px" value="#{computadorBean.pcEditado.cpu.id}">
 				<f:selectItems value="#{computadorBean.cpus}" var="cpuE"
-					itemLabel="#{cpuE.marca} #{cpuE.nome}: R$#{cpuE.preco}" itemValue="#{cpuE.id}" />
+					itemLabel="#{cpuE.marca} #{cpuE.nome}: R$#{cpuE.preco}"
+					itemValue="#{cpuE.id}" />
 			</p:selectOneMenu>
 
 

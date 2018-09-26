@@ -17,6 +17,8 @@
 				url="createPc.xhtml" />
 			<p:menuitem icon="ui-icon-disk" value="PCs Montados"
 				url="pcsMontados.xhtml" />
+			<p:menuitem value="Home" url="/index.xhtml" />
+
 
 		</p:tabMenu>
 
@@ -29,6 +31,8 @@
 				<f:facet name="header">
 					<p:outputLabel style="font-weight: bold;"
 						value="Nome: #{pc.nome}. ID: #{pc.id}" />
+					<p:outputLabel value="#{usuarioBean.getUserLogin()}" />
+
 				</f:facet>
 
 				<h:outputText value="Placa Mãe: " />
