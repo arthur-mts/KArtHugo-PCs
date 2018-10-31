@@ -13,20 +13,22 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import entities.MontagemDeComputador;
 import entities.Peca;
-import services.GerenciadorBD;
 import services.PcService;
 import services.PecaService;
 
 @SessionScoped
 @Named
 public class ComputadorBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Gerencia pecas
 	private List<MontagemDeComputador> pcs = new ArrayList<MontagemDeComputador>();
 	private MontagemDeComputador pcBuscado = new MontagemDeComputador();
 	private MontagemDeComputador pcEditado = new MontagemDeComputador();
 	private MontagemDeComputador pc = new MontagemDeComputador();
 	private int idPc;
-	private GerenciadorBD gbd;
 	private static int cont = 0;
 	private boolean renderPanelGridPcBuscado;
 	private int qntRam;
@@ -166,7 +168,6 @@ public class ComputadorBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		gbd = new GerenciadorBD();
 		pecas = pecaService.getAll();
 		pcs = pcService.getAll();
 		for (Peca p : pecas) {
@@ -335,15 +336,6 @@ public class ComputadorBean implements Serializable {
 	public void setRenderPanelGridPcBuscado(boolean renderPanelGridPcBuscado) {
 		this.renderPanelGridPcBuscado = renderPanelGridPcBuscado;
 	}
-
-	public GerenciadorBD getGbd() {
-		return gbd;
-	}
-
-	public void setGbd(GerenciadorBD gbd) {
-		this.gbd = gbd;
-	}
-
 	public PecaService getPecaService() {
 		return pecaService;
 	}

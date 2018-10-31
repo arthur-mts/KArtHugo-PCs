@@ -10,6 +10,10 @@ import dao.PecaDAO;
 import entities.Peca;
 
 public class PecaService implements Serializable, services.Service<Peca> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private PecaDAO dao;
 

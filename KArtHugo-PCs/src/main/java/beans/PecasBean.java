@@ -3,22 +3,40 @@ package beans;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import entities.Peca;
+import services.PecaService;
 
 /*@ManagedBean(name="pecasBean")
 @ApplicationScoped*/
-@ViewScoped
+@SessionScoped
+@Named
 public class PecasBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6642130476738684774L;
 	private List<Peca> pecas = new ArrayList<Peca>();
 	private Peca peca = new Peca();
 	private Peca pecaBuscada = new Peca();
-	//private static int cont = 0;
 	private String nomePeca;
-		
+	@Inject
+	private PecaService service;
+
+	@PostConstruct
+	private void init() {
+		limpar();
+	}
+
+	private void limpar() {
+		peca = new Peca();
+		pecas = service.getAll();
+	}
 
 	public List<Peca> getPecas() {
 		return pecas;
@@ -44,14 +62,6 @@ public class PecasBean implements Serializable {
 		this.pecaBuscada = pecaBuscada;
 	}
 
-	/*public static int getCont() {
-		return cont;
-	}
-
-	public static void setCont(int cont) {
-		PecasBean.cont = cont;
-	}*/
-
 	public String getNomePeca() {
 		return nomePeca;
 	}
@@ -60,5 +70,37 @@ public class PecasBean implements Serializable {
 		this.nomePeca = nomePeca;
 	}
 
+	public List<String> autoCompleteDescricaoPeca(String d) {
+		if (service.getAll().isEmpty()) {
+			return new ArrayList<String>() {
+				{
+					add("Nividia");
+					add("Intel");
+					add("AMD");
+					add("Razer");
+					add("Gigabyte");
+					add("HyperX");
+				}
+
+			};
+
+		} else {
+			ArrayList<String> cats = new ArrayList<String>();
+			for (Peca p : service.getAll()) {
+				if (!cats.contains(p.getCategoria())) {
+					cats.add(p.getCategoria());
+				}
+			}
+			return cats;
+		}
+	}
+
+	public PecaService getService() {
+		return service;
+	}
+
+	public void setService(PecaService service) {
+		this.service = service;
+	}
 
 }

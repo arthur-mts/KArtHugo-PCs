@@ -8,6 +8,10 @@ import entities.MontagemDeComputador;
 import util.TransacionalCdi;
 
 public class PcService implements Serializable, services.Service<MontagemDeComputador> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7315243640875303126L;
 	@Inject
 	private PcDAO dao;
 
