@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
 import java.util.Collection;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
@@ -22,6 +21,11 @@ import services.UserService;
 @ViewScoped
 @Named
 public class UsuarioBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private UserService service;

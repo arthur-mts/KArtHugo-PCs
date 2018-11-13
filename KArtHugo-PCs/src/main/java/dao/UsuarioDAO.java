@@ -17,7 +17,7 @@ public class UsuarioDAO extends DAO<Usuario> {
 		return null;
 	}
 
-	private String hash(String password) {
+	public String hash(String password) {
 		try {
 			MessageDigest md;
 			md = MessageDigest.getInstance("SHA-256");

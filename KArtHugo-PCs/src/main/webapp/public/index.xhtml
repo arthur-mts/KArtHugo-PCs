@@ -10,19 +10,38 @@
 </h:head>
 
 <h:body>
-	<h:form prependId="false" id="formLogin"
+	<h:form prependId="false" id="formMenu"
 		onsubmit="action='j_security_check';">
 		<p:growl id="growl" showDetail="true" sticky="true" />
-		<p:messages>
-		</p:messages>
+		<p:messages></p:messages>
 		<p:tabMenu>
 			<p:menuitem icon="ui-icon-disk" value="PCs Montados"
 				url="private/pcsMontados.xhtml" />
 			<p:menuitem icon="ui-icon-disk" value="Monte seu PC"
 				url="private/createPc.xhtml" />
-			<p:menuitem value="Home" url="index.html"/>
+			<p:menuitem value="Home" url="index.html" />
 		</p:tabMenu>
-		<p:panel header="Login">
+	</h:form>
+	<p:panel header="Login"
+		style="width: 30%; text-align:center; margin: auto;">
+		<h:form id="formLogin" prependId="false"
+			onsubmit="action='j_security_check';">
+			<h:panelGrid columns="2" style="text-align:center; margin: auto;">
+				<h:outputLabel for="j_username" value="Login:" />
+				<h:inputText id="j_username" />
+
+				<h:outputLabel for="j_password" value="Senha:" />
+				<h:inputSecret id="j_password" />
+				<p:commandButton id="btnLogin" value="Login" ajax="false"
+					icon="fa fa-sign-in" />
+			</h:panelGrid>
+			<!-- <p:link value="Cadastre-se" href="cadastro.xhtml" /> -->
+		</h:form>
+	</p:panel>
+
+</h:body>
+</html>
+<!--<p:panel header="Login">
 			<p:panelGrid rendered="true" columns="2">
 
 				<p:outputLabel for="username" value="Usuario: " />
@@ -31,17 +50,9 @@
 				<p:outputLabel for="username" value="Senha: " />
 				<p:password id="password" required="true" label="password" />
 			</p:panelGrid>
-			<p:commandButton value="Entrar" icon="fa fa-sign-in" ajax="false" />
-		</p:panel>
-		<p:link value="Cadastre-se" href="cadastro.xhtml" />
-
-
-
-	</h:form>
-	<!-- <marquee scrollamount="40">
+			<p:commandButton value="Entrar" action="" icon="fa fa-sign-in" ajax="false" />
+		</p:panel> -->
+<!-- <marquee scrollamount="40">
 		<h1 style="font-size: 100px; color: blue; text-align: left;">Monta ai comedia</h1>
 		<h:graphicImage url="/images/pc.jpg"/>
 	</marquee> -->
-
-</h:body>
-</html>

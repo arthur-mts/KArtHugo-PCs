@@ -27,7 +27,11 @@ public class PecasBean implements Serializable {
 	private String nomePeca;
 	@Inject
 	private PecaService service;
-
+	
+	public void salvarPeca() {
+		service.save(peca);
+		limpar();
+	}
 	@PostConstruct
 	private void init() {
 		limpar();
@@ -73,6 +77,11 @@ public class PecasBean implements Serializable {
 	public List<String> autoCompleteDescricaoPeca(String d) {
 		if (service.getAll().isEmpty()) {
 			return new ArrayList<String>() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 4260511653374404171L;
+
 				{
 					add("Nividia");
 					add("Intel");

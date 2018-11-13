@@ -14,23 +14,24 @@
 		<p:panel header="Cadastro Peca">
 			<p:panelGrid>
 				<p:outputLabel value="Nome da peca: *" />
-				<p:inputText id="nomePeca" value="#{pecaBean.peca.nome}"
+				<p:inputText id="nomePeca" value="#{pecasBean.peca.nome}"
 					required="true" />
 
 				<p:outputLabel value="Descricao: *" />
-				<p:inputText id="descrPeca" value="#{pecaBean.peca.descricao}"
+				<p:inputText id="descrPeca" value="#{pecasBean.peca.descricao}"
 					required="true" />
 
 				<p:outputLabel value="Categoria: *" />
-				<p:autoComplete id="catPeca" value="#{pecaBean.peca.categoria}"
+				<p:autoComplete id="catPeca" value="#{pecasBean.peca.categoria}"
 					maxResults="5" required="true"
-					completeMethod="#{pecaBean.autoCompleteDescricaoPeca}" />
+					completeMethod="#{pecasBean.autoCompleteDescricaoPeca}" />
 
 				<p:outputLabel value="Preco:* " />
-				<p:autoComplete id="precoPeca" value="#{pecaBean.peca.preco}" />
+				<p:autoComplete id="precoPeca" value="#{pecasBean.peca.preco}" />
 
 			</p:panelGrid>
 		</p:panel>
+		<p:commandButton action="#{pecasBean.salvarPeca()}" value="Salvar peca"/>
 
 	</h:form>
 </h:body>
