@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -40,6 +42,13 @@ public class PecasBean implements Serializable {
 	private void limpar() {
 		peca = new Peca();
 		pecas = service.getAll();
+	}
+	
+	public void onRowEdit(Peca p) {
+		service.update(p);
+		FacesMessage msg = new FacesMessage("Aluno editado", p.getNome());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		limpar();
 	}
 
 	public List<Peca> getPecas() {

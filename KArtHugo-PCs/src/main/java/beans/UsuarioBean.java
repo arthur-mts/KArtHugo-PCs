@@ -63,7 +63,7 @@ public class UsuarioBean implements Serializable {
 		}
 		if (pass && unique) {
 			entidade.setPassword(service.hash(entidade.getPassword()));
-			entidade.setGrupo("OUTROS");
+			entidade.setGrupo("USER");
 			service.save(entidade);
 			entidades = service.getAll();
 			FacesContext.getCurrentInstance().addMessage("Sucesso!",
@@ -79,6 +79,16 @@ public class UsuarioBean implements Serializable {
 			return "";
 		}
 		return userPrincipal.getName();
+	}
+
+	public boolean userLogged() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+		if (externalContext.getUserPrincipal() == null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void efetuarLogout() throws IOException, ServletException {

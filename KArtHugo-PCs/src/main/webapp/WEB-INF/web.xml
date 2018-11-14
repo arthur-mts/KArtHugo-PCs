@@ -21,25 +21,24 @@
 		<param-value>dot-luv</param-value>
 	</context-param>
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>/public/index.xhtml</welcome-file>
 	</welcome-file-list>
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<realm-name>karthugoJdbcRealm</realm-name>
 		<form-login-config>
-			<form-login-page>/public/cadastro.xhtml</form-login-page>
-			<form-error-page>/public/cadastro.xhtml?error=true</form-error-page>
+			<form-login-page>/public/index.xhtml</form-login-page>
+			<form-error-page>/public/index.xhtml?error=true</form-error-page>
 		</form-login-config>
 	</login-config>
 	<security-constraint>
 		<web-resource-collection>
-			<web-resource-name>Área protegida</web-resource-name>
+			<web-resource-name>Usuario cadastrado</web-resource-name>
 			<description />
 			<url-pattern>/private/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<description />
-			<role-name>ADMIN</role-name>
 			<role-name>USER</role-name>
 		</auth-constraint>
 		<user-data-constraint>
@@ -48,7 +47,7 @@
 	</security-constraint>
 	<security-constraint>
 		<web-resource-collection>
-			<web-resource-name>Área protegida</web-resource-name>
+			<web-resource-name>Admins</web-resource-name>
 			<description />
 			<url-pattern>/admins/*</url-pattern>
 		</web-resource-collection>

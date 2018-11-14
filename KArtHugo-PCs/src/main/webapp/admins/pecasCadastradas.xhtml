@@ -23,6 +23,72 @@
 					<h:outputText value="#{peca.id}" />
 				</p:column>
 
+				<p:column headerText="Nome">
+
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{peca.nome}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<h:inputText value="#{peca.nome}" style="width:100%" />
+						</f:facet>
+
+					</p:cellEditor>
+
+				</p:column>
+
+				<p:column headerText="Descricao">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{peca.descricao}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<h:inputText value="#{peca.descricao}" style="width:100%" />
+						</f:facet>
+
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Preco">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{peca.preco}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<h:inputText value="#{peca.preco}" style="width:100%" />
+						</f:facet>
+
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Categoria">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{peca.categoria}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<h:inputText value="#{peca.categoria}" style="width:100%" />
+						</f:facet>
+
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Marca">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{peca.marca}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<h:inputText value="#{peca.marca}" style="width:100%" />
+						</f:facet>
+
+					</p:cellEditor>
+				</p:column>
 				</p:dataGrid>
 		</p:panel>
 		<p:commandButton action="#{pecasBean.salvarPeca()}"
