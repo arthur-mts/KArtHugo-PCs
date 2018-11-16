@@ -11,13 +11,12 @@
 
 <h:form id="formMenu">
 	<p:menubar>
-		<p:menuitem rendered="#{usuarioBean.isUserInRole('USER')}"
-			icon="ui-icon-disk" value="PCs Montados"
-			url="/private/pcsMontados.xhtml" />
+		<p:menuitem rendered="#{usuarioBean.userLogged()}" icon="ui-icon-disk"
+			value="PCs Montados" url="/private/pcsMontados.xhtml" />
 		<f:facet name="options">
-			<h:outputText value="#{usuarioBean.userLogin}"/>
+			<h:outputText value="#{usuarioBean.userLogin}" />
 			<p:commandButton id="menuItemLogout" value="Logout"
-				icon="fa fa-fw fa-sign-out" action="#{usuarioBean.efetuarLogout}"
+				icon="fa fa-fw fa-sign-out" action="#{usuarioBean.efetuarLogout()}"
 				ajax="false" />
 		</f:facet>
 	</p:menubar>
@@ -38,7 +37,7 @@
 	<p:panel header="Login"
 		style="width: 30%; text-align:center; margin: auto;">
 		<h:form prependId="false" id="login"
-			onsubmit="document.getElementById('login').action='j_security_check';">
+			onsubmit="action='j_security_check';">
 			<h:panelGrid columns="2" style="text-align:center; margin: auto;">
 				<h:outputLabel for="j_username" value="Login:" />
 				<h:inputText id="j_username" />

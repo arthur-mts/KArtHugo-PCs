@@ -23,17 +23,18 @@ public class PecasBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6642130476738684774L;
-	private List<Peca> pecas = new ArrayList<Peca>();
+	private List<Peca> pecas;
 	private Peca peca = new Peca();
 	private Peca pecaBuscada = new Peca();
 	private String nomePeca;
 	@Inject
 	private PecaService service;
-	
+
 	public void salvarPeca() {
 		service.save(peca);
 		limpar();
 	}
+
 	@PostConstruct
 	private void init() {
 		limpar();
@@ -43,7 +44,7 @@ public class PecasBean implements Serializable {
 		peca = new Peca();
 		pecas = service.getAll();
 	}
-	
+
 	public void onRowEdit(Peca p) {
 		service.update(p);
 		FacesMessage msg = new FacesMessage("Aluno editado", p.getNome());
@@ -83,7 +84,7 @@ public class PecasBean implements Serializable {
 		this.nomePeca = nomePeca;
 	}
 
-	public List<String> autoCompleteDescricaoPeca(String d) {
+	public List<String> autoCompleteCategoriaPeca(String d) {
 		if (service.getAll().isEmpty()) {
 			return new ArrayList<String>() {
 				/**
@@ -92,12 +93,12 @@ public class PecasBean implements Serializable {
 				private static final long serialVersionUID = 4260511653374404171L;
 
 				{
-					add("Nividia");
-					add("Intel");
-					add("AMD");
-					add("Razer");
-					add("Gigabyte");
-					add("HyperX");
+					add("ram");
+					add("placa");
+					add("hd");
+					add("fonte");
+					add("cpu");
+					add("video");
 				}
 
 			};
@@ -110,6 +111,34 @@ public class PecasBean implements Serializable {
 				}
 			}
 			return cats;
+		}
+	}
+
+	public List<String> autoCompleteMarcaPeca(String d) {
+		if (service.getAll().isEmpty()) {
+			return new ArrayList<String>() {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 4260511653374404171L;
+
+				{
+					add("HyperX");
+					add("Intel");
+					add("AMD");
+					add("Nividia");
+				}
+
+			};
+
+		} else {
+			ArrayList<String> marcas = new ArrayList<String>();
+			for (Peca p : service.getAll()) {
+				if (!marcas.contains(p.getMarca())) {
+					marcas.add(p.getMarca());
+				}
+			}
+			return marcas;
 		}
 	}
 

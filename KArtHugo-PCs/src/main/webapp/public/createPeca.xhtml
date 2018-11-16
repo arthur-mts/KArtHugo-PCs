@@ -10,9 +10,9 @@
 </h:head>
 
 <h:body>
-	<h:form>
+	<h:form id="form">
 		<p:panel header="Cadastro Peca">
-			<p:panelGrid>
+			<p:panelGrid columns="2">
 				<p:outputLabel value="Nome da peca: *" />
 				<p:inputText id="nomePeca" value="#{pecasBean.peca.nome}"
 					required="true" />
@@ -23,15 +23,21 @@
 
 				<p:outputLabel value="Categoria: *" />
 				<p:autoComplete id="catPeca" value="#{pecasBean.peca.categoria}"
-					maxResults="5" required="true"
-					completeMethod="#{pecasBean.autoCompleteDescricaoPeca}" />
+					maxResults="7" required="true"
+					completeMethod="#{pecasBean.autoCompleteCategoriaPeca}" />
 
 				<p:outputLabel value="Preco:* " />
-				<p:autoComplete id="precoPeca" value="#{pecasBean.peca.preco}" />
+				<p:inputText id="precoPeca" value="#{pecasBean.peca.preco}" />
 
+				<p:outputLabel value="Marca:* " />
+				<p:autoComplete id="marcaPeca" value="#{pecasBean.peca.marca}"
+					maxResults="5" required="true"
+					completeMethod="#{pecasBean.autoCompleteMarcaPeca}"/>
 			</p:panelGrid>
+			<p:commandButton action="#{pecasBean.salvarPeca()}"
+				value="Salvar peca" update="form" />
 		</p:panel>
-		<p:commandButton action="#{pecasBean.salvarPeca()}" value="Salvar peca"/>
+
 
 	</h:form>
 </h:body>

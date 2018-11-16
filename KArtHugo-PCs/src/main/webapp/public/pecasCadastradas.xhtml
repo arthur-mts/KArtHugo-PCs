@@ -12,12 +12,11 @@
 <h:body>
 	<h:form>
 		<p:panel header="Cadastro Peca">
-			<p:dataTable var="pecas" value="#{pecasBean.pecas}"
+			<p:dataTable var="peca" value="#{pecasBean.pecas}"
 				emptyMessage="Sem pecas cadastrados!" editable="true">
-				<f:facet name="header"> Alunos Cadastrados</f:facet>
+				<f:facet name="header"> Pecas Cadastradas</f:facet>
 
-				<p:ajax event="rowEdit" listener="#{pecasBean.onRowEdit(peca)}"
-					update=":form:growl" />
+				<p:ajax event="rowEdit" listener="#{pecasBean.onRowEdit(peca)}" />
 
 				<p:column headerText="ID" sortable="true" sortBy="#{peca.id}">
 					<h:outputText value="#{peca.id}" />
@@ -89,10 +88,11 @@
 
 					</p:cellEditor>
 				</p:column>
-				</p:dataGrid>
+				<p:column style="width:32px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
 		</p:panel>
-		<p:commandButton action="#{pecasBean.salvarPeca()}"
-			value="Salvar peca" />
 
 	</h:form>
 </h:body>

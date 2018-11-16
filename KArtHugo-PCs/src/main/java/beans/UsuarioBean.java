@@ -41,9 +41,7 @@ public class UsuarioBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		entidade = newEntidade();
-		entidades = getService().getAll();
-		entidades.add(new Usuario());
+		limpar();
 	}
 
 	public void cadastro() {
@@ -66,8 +64,15 @@ public class UsuarioBean implements Serializable {
 			entidade.setGrupo("USER");
 			service.save(entidade);
 			entidades = service.getAll();
-			FacesContext.getCurrentInstance().addMessage("Sucesso!",
-					new FacesMessage("Conta cadastrada: " + entidade.getUsername()));
+			limpar();
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+				FacesContext.getCurrentInstance().addMessage("Sucesso!",
+						new FacesMessage("Usuario " + entidade.getNome() + " cadastrado!"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
@@ -84,7 +89,8 @@ public class UsuarioBean implements Serializable {
 	public boolean userLogged() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
-		if (externalContext.getUserPrincipal() == null) {
+		Principal principal = externalContext.getUserPrincipal();
+		if (principal == null) {
 			return false;
 		} else {
 			return true;

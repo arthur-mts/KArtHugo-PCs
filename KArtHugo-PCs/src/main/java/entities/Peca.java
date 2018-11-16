@@ -13,8 +13,7 @@ public class Peca implements Identificavel {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "peca_seq_gen")
 	@SequenceGenerator(name = "peca_seq_gen", sequenceName = "peca_id_seq")
 	@Id
-	private Long id; // categorias: ram, hd, video etc
-
+	private Long id;
 	public Peca(String nome, String categoria, double preco) {
 		super();
 		this.nome = nome;
