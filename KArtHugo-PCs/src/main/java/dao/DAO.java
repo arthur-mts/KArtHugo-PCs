@@ -44,6 +44,7 @@ public abstract class DAO<E extends Identificavel> {
 		return em.find(classe, objId);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<E> getAll() {
 		Query query = em.createQuery("from " + classe.getSimpleName());
 		return query.getResultList();

@@ -42,9 +42,11 @@ public class UsuarioBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		limpar();
+		entidades.add(newEntidade());
 	}
 
 	public void cadastro() {
+		entidades = service.getAll();
 		boolean pass = false;
 		if (!entidade.getPassword().equals(autPassword)) {
 			FacesContext.getCurrentInstance().addMessage("ERROR", new FacesMessage("Confira sua senha!"));
@@ -63,7 +65,6 @@ public class UsuarioBean implements Serializable {
 			entidade.setPassword(service.hash(entidade.getPassword()));
 			entidade.setGrupo("USER");
 			service.save(entidade);
-			entidades = service.getAll();
 			limpar();
 			try {
 				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
@@ -74,6 +75,15 @@ public class UsuarioBean implements Serializable {
 			}
 
 		}
+	}
+
+	public void redirectPage() {
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("public/cadsatro.xhtml");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	public String getUserLogin() {
