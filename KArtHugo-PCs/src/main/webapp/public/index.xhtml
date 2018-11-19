@@ -9,42 +9,46 @@
 	<title>KArtHugo PCs</title>
 </h:head>
 
-<h:form id="formMenu">
-	<p:menubar>
-		<p:menuitem rendered="#{usuarioBean.userLogged()}" icon="ui-icon-disk"
-			value="PCs Montados" url="/private/pcsMontados.xhtml" />
-		<f:facet name="options">
-			<h:outputText value="#{usuarioBean.userLogin}" />
-			<p:commandButton id="menuItemLogout" value="Logout"
-				icon="fa fa-fw fa-sign-out" action="#{usuarioBean.efetuarLogout()}"
-				ajax="false" />
-		</f:facet>
-	</p:menubar>
-	<p:tabMenu rendered="#{usuarioBean.userLogged()}">
-		<p:menuitem rendered="#{usuarioBean.isUserInRole('USER')}"
-			icon="ui-icon-disk" value="PCs Montados"
-			url="/private/pcsMontados.xhtml" />
-		<p:menuitem icon="ui-icon-disk" value="Monte seu PC"
-			rendered="#{usuarioBean.isUserInRole('USER')}"
-			url="/private/createPc.xhtml" />
-		<p:menuitem value="Home" url="/public/index.xhtml" />
-	</p:tabMenu>
-</h:form>
+
 
 <h:body>
 
+	<h:form id="formMenu">
+		<p:menubar>
+			<p:menuitem rendered="#{usuarioBean.userLogged()}"
+				icon="ui-icon-disk" value="PCs Montados"
+				url="/private/pcsMontados.xhtml" />
+			<f:facet name="options">
+				<h:outputText value="#{usuarioBean.userLogin}" />
+				<p:commandButton id="menuItemLogout" value="Logout"
+					icon="fa fa-fw fa-sign-out" action="#{usuarioBean.efetuarLogout()}"
+					ajax="false" />
+			</f:facet>
+		</p:menubar>
+		<p:tabMenu rendered="#{usuarioBean.userLogged()}">
+			<p:menuitem rendered="#{usuarioBean.isUserInRole('USER')}"
+				icon="ui-icon-disk" value="PCs Montados"
+				url="/private/pcsMontados.xhtml" />
+			<p:menuitem icon="ui-icon-disk" value="Monte seu PC"
+				rendered="#{usuarioBean.isUserInRole('USER')}"
+				url="/private/createPc.xhtml" />
+			<p:menuitem value="Home" url="/public/index.xhtml" />
+		</p:tabMenu>
+	</h:form>
 
+	<p:messages id="messages" showDetail="true" closable="true">
+    </p:messages>
 	<p:panel header="Login"
 		style="width: 30%; text-align:center; margin: auto;">
 		<h:form prependId="false" id="login"
-			onsubmit="action='j_security_check';">
+			onsubmit="document.getElementById('login').action='j_security_check';">
 			<h:panelGrid columns="2" style="text-align:center; margin: auto;">
 				<h:outputLabel for="j_username" value="Login:" />
 				<h:inputText id="j_username" />
 
 				<h:outputLabel for="j_password" value="Senha:" />
 				<h:inputSecret id="j_password" name="j_password" />
-				<p:commandButton action="#{usuarioBean.redirectPage()}" id="submit" value="Login" ajax="false" />
+				<p:commandButton id="submit" value="Login" ajax="false" />
 				<p:link outcome="/public/cadastro" value="Cadastre-se"></p:link>
 			</h:panelGrid>
 		</h:form>

@@ -6,9 +6,9 @@ import java.security.Principal;
 import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import entities.Usuario;
 import services.UserService;
 
-@ViewScoped
+@SessionScoped
 @Named
 public class UsuarioBean implements Serializable {
 
@@ -79,7 +79,7 @@ public class UsuarioBean implements Serializable {
 
 	public void redirectPage() {
 		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("public/cadsatro.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("cadastro.xhtml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
