@@ -42,7 +42,6 @@ public class UsuarioBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		limpar();
-		entidades.add(newEntidade());
 	}
 
 	public void cadastro() {
@@ -75,15 +74,6 @@ public class UsuarioBean implements Serializable {
 			}
 
 		}
-	}
-
-	public void redirectPage() {
-		try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("cadastro.xhtml");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public String getUserLogin() {
@@ -149,10 +139,6 @@ public class UsuarioBean implements Serializable {
 		limpar();
 	}
 
-	public void editar(Long id) {
-		this.getEntidade().setId(id);
-		save();
-	}
 
 	public void limpar() {
 		entidades = getService().getAll();

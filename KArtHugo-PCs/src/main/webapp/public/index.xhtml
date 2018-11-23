@@ -14,9 +14,8 @@
 <h:body>
 
 	<h:form id="formMenu">
-		<p:menubar>
-			<p:menuitem rendered="#{usuarioBean.userLogged()}"
-				icon="ui-icon-disk" value="PCs Montados"
+		<p:menubar rendered="#{usuarioBean.userLogged()}">
+			<p:menuitem icon="ui-icon-disk" value="PCs Montados"
 				url="/private/pcsMontados.xhtml" />
 			<f:facet name="options">
 				<h:outputText value="#{usuarioBean.userLogin}" />
@@ -37,11 +36,11 @@
 	</h:form>
 
 	<p:messages id="messages" showDetail="true" closable="true">
-    </p:messages>
+	</p:messages>
 	<p:panel header="Login"
 		style="width: 30%; text-align:center; margin: auto;">
 		<h:form prependId="false" id="login"
-			onsubmit="document.getElementById('login').action='j_security_check';">
+			onsubmit="action='j_security_check';''">
 			<h:panelGrid columns="2" style="text-align:center; margin: auto;">
 				<h:outputLabel for="j_username" value="Login:" />
 				<h:inputText id="j_username" />
@@ -49,7 +48,7 @@
 				<h:outputLabel for="j_password" value="Senha:" />
 				<h:inputSecret id="j_password" name="j_password" />
 				<p:commandButton id="submit" value="Login" ajax="false" />
-				<p:link outcome="/public/cadastro" value="Cadastre-se"></p:link>
+				<p:link outcome="/public/cadastro.xhtml" value="Cadastre-se"></p:link>
 			</h:panelGrid>
 		</h:form>
 	</p:panel>
