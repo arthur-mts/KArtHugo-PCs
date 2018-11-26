@@ -31,6 +31,9 @@
 			<form-error-page>/public/index.xhtml?error=true</form-error-page>
 		</form-login-config>
 	</login-config>
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Usuario cadastrado</web-resource-name>

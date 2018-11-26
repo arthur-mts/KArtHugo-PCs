@@ -6,7 +6,8 @@ import java.security.Principal;
 import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import entities.Usuario;
 import services.UserService;
 
-@SessionScoped
+@ViewScoped
 @Named
 public class UsuarioBean implements Serializable {
 
@@ -37,6 +38,7 @@ public class UsuarioBean implements Serializable {
 	protected Collection<Usuario> entidades;
 
 	public UsuarioBean() {
+		entidade = new Usuario();
 	}
 
 	@PostConstruct
@@ -47,7 +49,8 @@ public class UsuarioBean implements Serializable {
 	public void cadastro() {
 		entidades = service.getAll();
 		boolean pass = false;
-		if (!entidade.getPassword().equals(autPassword)) {
+		String password = entidade.getPassword();
+		if (!password.equals(autPassword)) {
 			FacesContext.getCurrentInstance().addMessage("ERROR", new FacesMessage("Confira sua senha!"));
 		} else {
 			pass = true;
@@ -65,6 +68,7 @@ public class UsuarioBean implements Serializable {
 			entidade.setGrupo("USER");
 			service.save(entidade);
 			limpar();
+			entidade = new Usuario();
 			try {
 				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 				FacesContext.getCurrentInstance().addMessage("Sucesso!",
@@ -137,17 +141,14 @@ public class UsuarioBean implements Serializable {
 	public void save() {
 		getService().save(entidade);
 		limpar();
+		entidade = new Usuario();
 	}
 
 
 	public void limpar() {
 		entidades = getService().getAll();
-		entidade = newEntidade();
 	}
 
-	protected Usuario newEntidade() {
-		return new Usuario();
-	}
 
 	public UserService getService() {
 		return service;
