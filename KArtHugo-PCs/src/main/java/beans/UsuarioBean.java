@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
 import java.util.Collection;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletException;
@@ -48,36 +48,28 @@ public class UsuarioBean implements Serializable {
 
 	public void cadastro() {
 		entidades = service.getAll();
-		boolean pass = false;
 		String password = entidade.getPassword();
 		if (!password.equals(autPassword)) {
 			FacesContext.getCurrentInstance().addMessage("ERROR", new FacesMessage("Confira sua senha!"));
-		} else {
-			pass = true;
+			return;
 		}
-		boolean unique = false;
 		for (Usuario u : entidades) {
 			if (entidade.getEmail().equals(u.getEmail())) {
 				FacesContext.getCurrentInstance().addMessage("ERROR", new FacesMessage("Email já cadastrado"));
-			} else {
-				unique = true;
 			}
 		}
-		if (pass && unique) {
-			entidade.setPassword(service.hash(entidade.getPassword()));
-			entidade.setGrupo("USER");
-			service.save(entidade);
-			limpar();
-			entidade = new Usuario();
-			try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-				FacesContext.getCurrentInstance().addMessage("Sucesso!",
-						new FacesMessage("Usuario " + entidade.getNome() + " cadastrado!"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		entidade.setPassword(service.hash(entidade.getPassword()));
+		entidade.setGrupo("USER");
+		service.save(entidade);
+		limpar();
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+			FacesContext.getCurrentInstance().addMessage("Sucesso!",
+					new FacesMessage("Usuario " + entidade.getNome() + " cadastrado!"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-		}
 	}
 
 	public String getUserLogin() {
@@ -144,11 +136,10 @@ public class UsuarioBean implements Serializable {
 		entidade = new Usuario();
 	}
 
-
 	public void limpar() {
 		entidades = getService().getAll();
+		entidade = new Usuario();
 	}
-
 
 	public UserService getService() {
 		return service;
