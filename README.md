@@ -1,19 +1,20 @@
 # Configuração do JAAS e Data Source
 Repositório dos projetos utilizados como exemplo na disciplina de Desenvolvimento de Aplicações Web II no curso técnico integrado em informática do IFPB Campus Esperança.
 
-1. NÃO implante a aplicação ainda antes de realizar todas essas configurações;
-2. Certifique-se que o Wildfly está executando;
-3. As configurações serão feitas via linha de comando. Para isso, acessem a pasta "<WILDFLY_HOME>\bin" e executem o seguinte comando:
+- 1. NÃO implante a aplicação ainda antes de realizar todas essas configurações;
+- 2. Certifique-se que o Wildfly está executando;
+- 3. As configurações serão feitas via linha de comando. Para isso, acessem a pasta "<WILDFLY_HOME>\bin" e executem o seguinte comando:
 
-jboss-cli.bat
+**jboss-cli.bat** no Windows
+**./jboss-cli.sh** no Linux
 
 4. Execute os seguintes comandos:
 
 connect
 
-No Windows:
+- No Windows:
 module add --name=org.postgres --resources=C:\Users\Aluno\.m2\repository\org\postgresql\postgresql\9.4.1212\postgresql-9.4.1212.jar --dependencies=javax.api,javax.transaction.api
-Ou no Linux:
+- Ou no Linux:
 module add --name=org.postgres --resources=/home/arthurmts/.m2/repository/org/postgresql/postgresql/9.4.1212/postgresql-9.4.1212.jar --dependencies=javax.api,javax.transaction.api
 
 
